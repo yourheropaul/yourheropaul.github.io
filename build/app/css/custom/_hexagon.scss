@@ -1,0 +1,216 @@
+@mixin rotate($rotate) {
+	-ms-transform: rotate($rotate); /* IE 9 */
+	-webkit-transform: rotate($rotate); /* Chrome, Safari, Opera */
+	transform: rotate($rotate);
+}
+
+.hexagons {
+
+	font-size: 0;
+    margin-bottom: 55px;
+    margin-top: 15px;
+    word-spacing: 0;
+    text-align: center;
+    margin-top: 60px;
+
+    .spacer {
+    	display: none;
+	}
+
+	br {
+		display: none;
+	}
+
+	@media #{$large-only} {
+
+        .spacer {
+	    	display: inline-block;
+	    	width: 130px;
+	    }
+
+	    br {
+			display: block;
+		}
+	}
+
+	.hexagon {
+
+		display: inline-block;
+	    float: none;
+	    font-size: 16px;	    
+	    position: relative;
+	    vertical-align: middle;
+	    height: 173px;
+		width: 173px;
+		margin: 15px;
+		color: #FFFFFF;
+		opacity: 0;
+
+	    @media #{$large-only} {
+
+	    	width: 220px;
+	    	height: 190px;
+
+	    	margin: 0px;
+
+	    	padding-left: 56px;
+
+	        &.second-order {    	    
+		    	margin-top: -91px;
+		    }
+		}
+
+		.component {
+			background-color: #613573;
+			height: 173px;
+			width: 173px;
+
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    flex-direction: column;
+		    align-content: center;
+
+		    hr {
+		    	display: block;
+		    	border-top: 1px solid white;
+		    	height: 1px;
+		    	width: 80%;
+		    	margin: 0px !important;
+		    }
+
+		    br {
+		    	display: block;
+		    	width: 100%;
+		    	margin-top: 0.25em;
+		    	margin-bottom: 0.25em;
+		    }
+
+		    p {
+		    	margin-top: 1em;
+		    	margin-bottom: 1em;
+		    }
+
+	    	.large {
+	    		font-size: 8em !important;
+	    	}
+		    
+			&.b, &.c {
+				display: none;
+			}
+		}
+
+		&.promo-p {
+			.component {
+
+				position: absolute;
+				top: 0px;
+
+				@include box-sizing(border-box);
+
+				border: 10px solid $purple;
+
+				&.a { 
+					overflow: visible;
+					background: $purple url(../images/p-nr.png) center no-repeat; 
+				}
+
+				&.b { 
+					background: $purple url(../images/p-ccw.png) center no-repeat;
+					
+				}
+				&.c { 
+					background: $purple url(../images/p-cw.png) center no-repeat; 
+				}
+			}
+		}
+
+		&.promo-graphs {
+			.component {
+
+				position: absolute;
+				top: 0px;
+
+				@include box-sizing(border-box);
+
+				color: $purple;
+
+				&.a { 
+					overflow: visible;
+					background: transparent url(../images/graphs-nr.png) center no-repeat; 
+				}
+
+				&.b { 
+					background: transparent url(../images/graphs-ccw.png) center no-repeat;
+					
+				}
+				&.c { 
+					background: transparent url(../images/graphs-cw.png) center no-repeat; 
+				}
+			}
+		}
+
+		&.promo-lambert {
+			.component {
+
+				position: absolute;
+				top: 0px;
+
+				@include box-sizing(border-box);
+
+				color: $purple;
+
+				&.a { 
+					overflow: visible;
+					background: $purple url(../images/lambert-nr.png) center no-repeat; 
+				}
+
+				&.b { 
+					background: transparent url(../images/lambert-ccw.png) center no-repeat;
+					
+				}
+				&.c { 
+					background: transparent url(../images/lambert-cw.png) center no-repeat; 
+				}
+			}
+		}
+
+		@each $colour in $branding-colours {
+			&.#{$colour} {
+				.component {
+					@include background-colour($colour);
+					@include border-colour($colour);
+				}
+			}
+		}
+
+		@media #{$large-only} {
+
+			.component {
+			    height: 173px;
+			    position: absolute;
+			    width: 99px;
+
+			    border: none !important;
+
+				&.a {
+					text-align: center;
+					z-index: 1;
+				}
+
+				&.b {
+					display: block;
+					@include rotate(60deg);
+				}
+
+				&.c {
+					@include rotate(-60deg);
+					display: block;
+				}
+			}
+		}
+	}	
+}
+
+
+

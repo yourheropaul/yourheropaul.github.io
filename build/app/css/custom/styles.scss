@@ -1,0 +1,144 @@
+@import "compass/css3/opacity";
+
+// Foundation globals and functions
+$include-open-sans:false; // get rid of the pesky open sans http request
+@import "../../lib/foundation/scss/foundation/components/_global";
+
+@import "variables";
+@import "animate";
+@import "hexagon";
+
+
+body {
+	background: url(../images/background.png) top center;
+	font-family: "Helvetica";
+}
+
+h1,h2,h3,h4 {
+	color: white;
+}
+
+h1, h2, h3, h4 {
+	text-align: center;
+}
+
+h1 {
+	font-size: 60pt;
+	font-weight: bold;
+	line-height: 1em;
+	margin: 80px 0 0;
+
+	span {
+		&:hover {
+			color: $turquoise;
+		}
+	}
+}
+
+h2 {
+	background-color: white;
+	color: $orange;
+	padding: 4px 4px 0px 4px;
+	font-size: 24pt;
+}
+
+h3 {
+	font-size: 24pt;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 20pt;
+	text-transform: uppercase;
+	font-weight: bold;
+
+	&:before {
+		content:"\f013";
+		font-family: FontAwesome;
+		-moz-osx-font-smoothing: grayscale;
+		font-style: normal;
+	    font-weight: normal;
+	    line-height: 1;
+	    display: block;
+	    font-size: 15pt;
+	    margin-bottom: 3em;
+	}
+}
+
+.row {
+    max-width: 960px;
+}
+
+#sticky-nav-container,
+#perenial-nav-container {
+
+	background-color: white;
+
+	nav {
+		display: none;
+		background-color: white;
+	}
+
+	background-color: white;
+
+	nav {
+		display: none;
+		background-color: white;
+	}
+
+	.top-bar-section ul li > a,
+	.top-bar .name h1 a {
+		background-color: white;
+		color: $orange;
+		text-transform: uppercase;
+		span {
+			color: black;
+		}
+	}
+
+	.topbar.menu-icon a {
+		color: black;
+	}
+
+	&.fixed {
+		h2 {
+			display: none;
+		}
+
+		nav {
+			display: block;
+		}
+	}
+}
+
+#perenial-nav-container {
+	@include opacity(0.5);
+	height: 45px;
+
+	background-color: transparent;
+
+	nav {
+		background-color: transparent;
+	}
+
+	&.visible {
+		background-color: white;
+	}
+}
+
+#app {
+	padding-top: 60px;
+}
+
+@media #{$small} {
+
+}
+
+@media #{$medium} {
+
+}
+
+@media #{$large} {
+
+}

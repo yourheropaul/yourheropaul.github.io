@@ -1,0 +1,38 @@
+// Colour palette
+$orange: #f08332;
+$purple: #613573;
+$light-purple: #736caf;
+$dark-blue: #3d4188;
+$light-blue: #2b56a3;
+$turquoise: #2a988f;
+$yellow: #ffba4f;
+$white: white;
+
+$branding-colours: (primary, secondary, tertiary, quaternary, quinary, senary, septenary, octonary);
+
+%background-primary { background-color: $orange; }
+%background-secondary { background-color: $purple; }
+%background-tertiary { background-color: $light-purple; }
+%background-quaternary { background-color: $dark-blue; }
+%background-quinary { background-color: $light-blue; }
+%background-senary { background-color: $turquoise; }
+%background-septenary { background-color: $yellow; }
+%background-octonary { background-color: $white; }
+
+%border-primary { border-color: $orange; }
+%border-secondary { border-color: $purple; }
+%border-tertiary { border-color: $light-purple; }
+%border-quaternary { border-color: $dark-blue; }
+%border-quinary { border-color: $light-blue; }
+%border-senary { border-color: $turquoise; }
+%border-septenary { border-color: $yellow; }
+%border-octonary { border-color: $white; }
+
+@mixin background-colour($arg) {
+    @extend %background-#{$arg};
+}
+
+@mixin border-colour($arg) {
+    @extend %border-#{$arg};
+}
+

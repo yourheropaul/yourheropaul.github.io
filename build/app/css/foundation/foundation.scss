@@ -1,0 +1,15 @@
+// This will build a customised version of foundation
+// to suit our requitrements in terms iof grid, typography etc.
+// This can take time so it's best to exclude this from the main 
+// compass build and import the generated css
+
+$include-open-sans:false; // get rid of the pesky open sans http request
+
+@import "../custom/variables";
+
+// Customised Foundation Settings
+@import "variables";
+
+// Build Foundation itself
+@import "../../lib/foundation/scss/foundation";
+
