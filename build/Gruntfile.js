@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     // Build root
-    distRoot: '../public',
+    distRoot: '../',
 
     // JavaScript
     jsDir: 'app/js/',
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 
     // Templates
     tmplRoot: '../../html/',
-    tmplDistDir: '../public/',
+    tmplDistDir: '../',
 
     // CSS
     compass: {
