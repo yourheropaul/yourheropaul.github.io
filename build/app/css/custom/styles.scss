@@ -111,10 +111,28 @@ h4 {
 			display: block;
 		}
 	}
+
+	.menu-icon a span {
+		color: $orange;
+	}
+
+	.title-area {
+		background-color: white;
+	}
+
+	h1 {
+		text-align: left;
+	}
 }
 
 #perenial-nav-container {
-	@include opacity(0.5);
+
+	@include opacity(0.9);
+
+	@media #{$medium} {
+		@include opacity(0.5);
+	}
+
 	height: 45px;
 
 	background-color: transparent;
@@ -125,6 +143,14 @@ h4 {
 
 	&.visible {
 		background-color: white;
+	}
+
+	ul li > a {
+		padding: 10px 0 10px 15px;
+
+		@media #{$medium} {
+			padding: 0 15px;
+		}
 	}
 }
 
