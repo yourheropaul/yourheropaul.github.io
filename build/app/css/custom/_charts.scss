@@ -1,0 +1,64 @@
+.chart {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+	ul {
+		display: none;
+	}
+}
+
+// Pie Chart Variables
+$pie-color: $orange !default;
+$label-color: white;
+
+@mixin darkened-children($num-children, $color) {
+  @for $i from 1 through $num-children {
+    & > *:nth-child(#{$num-children}n+#{$i}) { // This causes looping to occur after there are $num-children child elements.
+      color: nth($branding-colour-codes, $i)
+    }
+  }
+}
+
+@mixin lightened-children($num-children, $color) {
+  @for $i from 1 through $num-children {
+    & > *:nth-child(#{$num-children}n+#{$i}) { // This causes looping to occur after there are $num-children child elements.
+      color: nth($branding-colour-codes, $i);
+    }
+  }
+}
+
+[data-pie-id], [data-bar-id], [data-line-id] {
+  @include darkened-children(7, $pie-color);
+}
+
+// Set the SVG to 100% width to smooth responsive resizing (optional)
+#pie, #donut, #bar {
+  max-height: 0px;
+}
+
+#bar {
+  // height: 300px;
+}
+
+svg {
+  width: 100%;
+  height: 355px;
+
+  text {
+    fill: $label-color;
+    opacity: 100 !important;
+    font-family: Helvetica;
+    font-weight: bold;
+  }
+}
+
+.tooltip {
+  margin-left: -5px;
+  border-radius: 3px;
+  padding: 5px;
+  color: white;
+}
+
+ul[data-pie-id] {
+  list-style: none;
+  padding: 10px;
+}

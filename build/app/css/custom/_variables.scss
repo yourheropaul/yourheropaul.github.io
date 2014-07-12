@@ -9,6 +9,7 @@ $yellow: #ffba4f;
 $white: white;
 
 $branding-colours: (primary, secondary, tertiary, quaternary, quinary, senary, septenary, octonary);
+$branding-colour-codes: ($purple, $yellow, $turquoise, $light-purple, $dark-blue, $light-blue, $white);
 
 %background-primary { background-color: $orange; }
 %background-secondary { background-color: $purple; }

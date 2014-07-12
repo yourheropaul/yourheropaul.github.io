@@ -7,7 +7,8 @@ $include-open-sans:false; // get rid of the pesky open sans http request
 @import "variables";
 @import "animate";
 @import "hexagon";
-
+@import "charts";
+@import "reviews";
 
 body {
 	background: url(../images/background.png) top center;
@@ -129,6 +130,53 @@ h4 {
 
 #app {
 	padding-top: 60px;
+}
+
+#footer {
+
+	margin-top: 10em;
+	background-color: $turquoise;
+	color: white;
+	opacity: 0.75;
+	padding-top: 2em;
+
+	.columns {
+		font-weight: medium;
+		font-family: Helvetica;
+		font-size: 0.8em;
+		text-align: center;
+		padding-bottom: 2em;
+	}
+}
+
+.content {
+	color: white;
+	margin-top: 2em;
+
+	p {		
+		border-left: 10px solid white;
+	    line-height: 1.3em;
+	    padding-left: 1em;
+	    margin-top: 0.5em;
+	    margin-bottom: -0.5em;
+	    padding-top: 0.5em;
+	    padding-bottom: 0.5em;
+
+    	&:first-of-type {
+    		padding-top: 0em;
+    	}
+
+    	&:last-of-type {
+    		padding-bottom: 0em;
+    	}
+	}
+
+	&.centered {
+		p {
+			border: none;
+			text-align: center;
+		}
+	}
 }
 
 @media #{$small} {

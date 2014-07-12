@@ -1,0 +1,65 @@
+.reviews {
+
+	color: white;
+
+	.quote {
+
+		margin-bottom: 30px;
+		margin-top: 40px;
+		text-align: center;
+
+		.fa-quote-left {
+			left: 0;
+		    position: relative;
+		    top: -14px;
+		}
+
+		font-size: 1.2em;
+		line-height: 1.2em;
+
+		span {
+			font-size: 2em;
+			line-height: 1em;
+		}
+	}
+
+	.rating {
+		text-align: center;
+	}
+}
+
+@media #{$medium} {
+
+	.reviews {
+		padding: 40px;
+
+		.quote {
+			display: table-cell; 
+		    vertical-align: middle; 
+		}
+
+		.rating {
+			text-align: center;
+		}
+	}
+
+}
+
+@media #{$large} {
+
+	.reviews {
+		color: white;
+		padding: 20px;
+
+		.quote {
+
+			height: 150px;
+			text-align: left;
+		}
+
+		.rating {
+			text-align: left;
+		}
+	}
+
+}
