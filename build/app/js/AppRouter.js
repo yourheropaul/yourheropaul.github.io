@@ -1,4 +1,5 @@
-var IndexView = require('./view/Index');
+var IndexView = require('./view/Index'),
+    TechView  = require('./view/Tech');
 
 module.exports = Backbone.Router.extend({
 
@@ -6,7 +7,7 @@ module.exports = Backbone.Router.extend({
 
     routes: {
       "": "index",
-      "test": "test"
+      "tech": "tech"
     },
 
     changeView: function(view, class_name, scroll) {
@@ -35,7 +36,7 @@ module.exports = Backbone.Router.extend({
         this.changeView(new IndexView({ el:$('#app') }), "landing", false);
     },
 
-    test: function() {
-        this.changeView(new IndexView({ el:$('#app') }), "landing", true);
+    tech: function() {
+        this.changeView(new TechView({ el:$('#app') }), "tech", true);
     },
 });

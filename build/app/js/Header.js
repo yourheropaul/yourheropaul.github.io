@@ -73,6 +73,7 @@ $(document).on("ready",function(){
 
 	    // While there are elements in the array
 	    while (counter > 0) {
+	    	
 	        // Pick a random index
 	        index = Math.floor(Math.random() * counter);
 

@@ -187,6 +187,7 @@ h4 {
 	    margin-bottom: -0.5em;
 	    padding-top: 0.5em;
 	    padding-bottom: 0.5em;
+	    text-align: justify;
 
     	&:first-of-type {
     		padding-top: 0em;
@@ -195,6 +196,13 @@ h4 {
     	&:last-of-type {
     		padding-bottom: 0em;
     	}
+	}
+
+	&.no-lead {
+		p {
+			border: none;
+			padding-left: 2em;
+		}
 	}
 
 	&.centered {

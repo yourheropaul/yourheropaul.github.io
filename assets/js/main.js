@@ -1,5 +1,6 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var IndexView = require('./view/Index');
+var IndexView = require('./view/Index'),
+    TechView  = require('./view/Tech');
 
 module.exports = Backbone.Router.extend({
 
@@ -7,7 +8,7 @@ module.exports = Backbone.Router.extend({
 
     routes: {
       "": "index",
-      "test": "test"
+      "tech": "tech"
     },
 
     changeView: function(view, class_name, scroll) {
@@ -36,11 +37,11 @@ module.exports = Backbone.Router.extend({
         this.changeView(new IndexView({ el:$('#app') }), "landing", false);
     },
 
-    test: function() {
-        this.changeView(new IndexView({ el:$('#app') }), "landing", true);
+    tech: function() {
+        this.changeView(new TechView({ el:$('#app') }), "tech", true);
     },
 });
-},{"./view/Index":4}],2:[function(require,module,exports){
+},{"./view/Index":4,"./view/Tech":5}],2:[function(require,module,exports){
 $(document).on("ready",function(){
 
 	var data_index = "colour-index";
@@ -116,6 +117,7 @@ $(document).on("ready",function(){
 
 	    // While there are elements in the array
 	    while (counter > 0) {
+	    	
 	        // Pick a random index
 	        index = Math.floor(Math.random() * counter);
 
@@ -214,6 +216,20 @@ module.exports = Backbone.View.extend({
             animation_type: 'elastic',
             always_show_text: true
         });
+    }
+});
+},{}],5:[function(require,module,exports){
+module.exports = Backbone.View.extend({
+
+    events: {
+    },
+
+    // generate the view
+    render: function() {
+
+        this.$el.html(Templates["tech"]({}));
+
+        return this;
     }
 });
 },{}]},{},[3])
