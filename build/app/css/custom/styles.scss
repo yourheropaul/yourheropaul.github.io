@@ -180,9 +180,7 @@ h4 {
 	margin-top: 2em;
 
 	p {		
-		border-left: 10px solid white;
 	    line-height: 1.3em;
-	    padding-left: 1em;
 	    margin-top: 0.5em;
 	    margin-bottom: -0.5em;
 	    padding-top: 0.5em;
@@ -202,8 +200,21 @@ h4 {
 	&.no-lead {
 		p {
 			border: none;
-			padding-left: 2em;
 		}
+	}
+
+	@media #{$medium} {
+		p {
+			border-left: 10px solid white;
+			padding-left: 1em;
+		}
+
+		&.no-lead {
+			p {
+				padding-left: 2em;
+			}
+		}
+
 	}
 
 	&.centered {
