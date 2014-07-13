@@ -1,0 +1,108 @@
+@import "compass/css3";
+
+// MIXINS
+// Calculates REMs out of pixels
+@mixin font-size($sizeValue: 16) {
+  font-size: $sizeValue + px;
+  font-size: $sizeValue / 16 + rem;
+}
+
+// Media Queries
+@mixin bp($point) {
+  @if $point == ocean {
+    @media (min-width: 1000px) {
+      @content;
+    }
+  }
+  @else if $point == lake {
+    @media (min-width: 700px) {
+      @content;
+    }
+  }
+}
+
+// STYLES
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.bar-chart {
+  display: block !important;
+  clear: both;
+  padding: 0;
+  width: 100%;
+  margin-top: 3em !important;
+  margin-bottom: 3em !important;
+  border-bottom: 1px solid white;
+
+  @include bp(lake) {
+    height: 425px;
+    margin: 0 auto emCalc(-32px);
+  }
+
+  li {
+    display: block;
+    height: 125px;
+    padding: emCalc(25px) 0;
+    position: relative;
+    text-align: center;
+    vertical-align: bottom;
+    @include bp(lake) {
+      display: inline-block;
+      height: 425px;
+      margin: 0 1.8% 0 0;
+      width: 15%;
+    }
+  }
+  .axis {
+    display: none;
+    top: emCalc(-45px);
+    width: 8%;
+    @include bp(lake) {
+      display: inline-block;
+    }
+  }
+  .label {
+    background-color: white;
+    color: $orange;
+    margin: -9px 0 71px 0;
+  }
+  .percent {
+    letter-spacing: -3px;
+    color: white;
+    width: 100%;
+    @include font-size(30);
+    @include bp(lake) {
+      position: absolute;
+      @include font-size(62);
+    }
+
+    span {
+      @include font-size(30);
+    }
+  }
+  .skill {
+    font-weight: 800;
+    color: white;
+    overflow: hidden;
+    text-transform: uppercase;
+    width: 100%;
+    @include font-size(14);
+    @include bp(lake) {
+      bottom: 20px;
+      position: absolute;
+      @include font-size(16);
+    }
+  }
+
+  .bar {
+    margin-bottom: 1px;
+  }
+
+  @each $colour in $branding-colours {
+        .#{$colour} {
+            @include background-colour($colour);
+        }
+    }
+}

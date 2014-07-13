@@ -1,9 +1,23 @@
+@import "charts/bar";
+
 .chart {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 
 	ul {
 		display: none;
 	}
+
+  h5 {
+    background-color: white;
+    color: $orange;
+    font-family: helvetica;
+    font-size: 0.75em;
+    font-weight: bold;
+    height: 27px;
+    padding: 0.5em;
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
 
 // Pie Chart Variables
