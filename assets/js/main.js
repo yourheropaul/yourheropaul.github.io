@@ -169,6 +169,8 @@ window.Application.HideNavigation = function() {
 	$('nav.main .column').slideUp();
 }
 },{"./AppRouter":1,"./Header":2}],4:[function(require,module,exports){
+var visits = 0;
+
 module.exports = Backbone.View.extend({
 
     events: {
@@ -204,7 +206,10 @@ module.exports = Backbone.View.extend({
 
     renderCharts: function() {
 
-        Pizza.init();
+        if (visits > 0)
+            Pizza.init();
+
+        visits++;
 
         Pizza.init("#chart-1,#chart-2,#chart-3",{
             donut: true,

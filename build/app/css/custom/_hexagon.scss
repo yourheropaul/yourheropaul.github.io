@@ -46,6 +46,10 @@
 		color: #FFFFFF;
 		opacity: 0;
 
+		&.fadeIn {
+			opacity: 100;
+		}
+
 	    @media #{$large-only} {
 
 	    	width: 220px;

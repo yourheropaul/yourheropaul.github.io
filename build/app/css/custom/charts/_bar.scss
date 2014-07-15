@@ -105,4 +105,33 @@ body {
             @include background-colour($colour);
         }
     }
+
+    &.horizontal {
+
+        height: auto;
+
+        .bar {
+            margin-top: 4px;
+            height: 60px;
+        }
+
+        .skill {
+            bottom: 14px;
+            font-size: 1rem;
+            left: 15px;
+            position: absolute;
+            text-align: left;
+        }
+
+        .percent {
+            color: white;
+            font-size: 3em !important;
+            height: 60px;
+            letter-spacing: -3px;
+            right: 12px;
+            text-align: right;
+            top: -5px;
+            width: 100%;
+        }
+    }
 }
