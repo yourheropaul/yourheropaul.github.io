@@ -1,11 +1,11 @@
 // Colour palette
 $orange: #f08332;
 $purple: #613573;
+$yellow: #ffba4f;
+$turquoise: #2a988f;
 $light-purple: #736caf;
 $dark-blue: #3d4188;
 $light-blue: #2b56a3;
-$turquoise: #2a988f;
-$yellow: #ffba4f;
 $white: white;
 
 $branding-colours: (primary, secondary, tertiary, quaternary, quinary, senary, septenary, octonary);
@@ -29,11 +29,36 @@ $branding-colour-codes: ($purple, $yellow, $turquoise, $light-purple, $dark-blue
 %border-septenary { border-color: $yellow; }
 %border-octonary { border-color: $white; }
 
+%text-primary { color: $orange; }
+%text-secondary { color: $purple; }
+%text-tertiary { color: $light-purple; }
+%text-quaternary { color: $dark-blue; }
+%text-quinary { color: $light-blue; }
+%text-senary { color: $turquoise; }
+%text-septenary { color: $yellow; }
+%text-octonary { color: $white; }
+
 @mixin background-colour($arg) {
     @extend %background-#{$arg};
 }
 
 @mixin border-colour($arg) {
     @extend %border-#{$arg};
+}
+
+@mixin text-colour($arg) {
+    @extend %text-#{$arg};
+}
+
+@each $colour in $branding-colours {
+
+	.#{$colour}-background-colour {
+		@include background-colour($colour);
+		@include border-colour($colour);
+	}
+
+	.#{$colour}-text-colour {
+		@include text-colour($colour);
+	}
 }
 

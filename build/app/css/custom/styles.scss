@@ -69,6 +69,24 @@ h4 {
 
 .row {
     max-width: 960px;
+
+    &.call-to-action {
+    	text-align: center;
+    	margin-bottom: 40px;
+
+    	a {
+			color: $orange;
+			background-color: white;
+		    display: inline-block;
+		    font-family: helvetica;
+		    font-size: 0.75em;
+		    font-weight: bold;
+		    height: 1.9em;
+		    list-style: none outside none;
+		    padding: 0.5em;
+		    text-transform: uppercase;
+    	}
+    }
 }
 
 #sticky-nav-container,

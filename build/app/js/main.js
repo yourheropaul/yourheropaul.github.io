@@ -1,5 +1,7 @@
 window.AppRouter = require('./AppRouter');
 window.Header    = require('./Header');
+window.Colours   = require("./Helper/Colours");
+window.Charts    = require("./Helper/Charts");
 
 $(document).on("ready",function(){
 

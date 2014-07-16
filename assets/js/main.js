@@ -41,7 +41,7 @@ module.exports = Backbone.Router.extend({
         this.changeView(new TechView({ el:$('#app') }), "tech", true);
     },
 });
-},{"./view/Index":4,"./view/Tech":5}],2:[function(require,module,exports){
+},{"./view/Index":6,"./view/Tech":7}],2:[function(require,module,exports){
 $(document).on("ready",function(){
 
 	var data_index = "colour-index";
@@ -135,8 +135,110 @@ $(document).on("ready",function(){
 
 });
 },{}],3:[function(require,module,exports){
+module.exports = {
+	
+	renderDoughnutChart: function(el, data, margin, top) {
+
+        var margin = (typeof margin == "undefined") ? 50 : margin;
+
+        /// Get context with jQuery - using jQuery's .get() method.
+        var ctx = el.get(0).getContext("2d");
+
+        var width = el.parent().width();
+
+        var options = {
+            responsive: true,
+            pointLabelFontColor : "white",
+            pointLabelFontSize : 14,
+            scaleLineColor: "white",
+            scaleLineWidth: 2,
+            scaleShowLabels : false,
+            animation: false,
+            inGraphDataShow : true,
+            datasetFill : true,
+            inGraphDataTmpl: "<%=v1%>",
+            spaceLeft : margin,
+            spaceRight : margin,
+            spaceTop : -60,
+            spaceBottom : 0,
+            inGraphDataFontSize : 15,
+            segmentShowStroke: false,
+            inGraphDataFontFamily: "'Helvetica'",
+            inGraphDataFontSize: 14,
+            inGraphDataFontStyle: "normal",
+            inGraphDataFontColor: "#fff",
+        };
+
+        el.attr("width",width);
+        el.attr("height",width);
+
+        function resize() {
+
+            if (el.parent().width() == width)
+                return;
+
+            width = el.parent().width();
+            el.attr("width",width);
+            el.attr("height",width)
+            radar = new Chart(ctx).Doughnut(data,options);
+        }
+
+        // This will get the first returned node in the jQuery collection.
+        var radar = new Chart(ctx).Doughnut(data, options);
+        ctx.clearRect(0, 0, width, width);
+
+        $(window).bind('resize', resize);
+    },
+
+    renderRadarChart: function(el, data) {
+
+        /// Get context with jQuery - using jQuery's .get() method.
+        var ctx = el.get(0).getContext("2d");
+
+        var width = el.parent().width();
+
+        var options = {
+            responsive: true,
+            angleLineColor : "rgba(255,255,255,1)",
+            pointLabelFontColor : "white",
+            pointLabelFontSize : 14,
+            pointLabelFontFamily : "'Helvetica'",
+            pointLabelFontStyle : "bold",
+            scaleLineColor: "white",
+            scaleLineWidth: 2,
+            scaleShowLabels : false,
+            animation: false,
+        };
+
+        $( window ).resize(function(event){
+            width = el.parent().width();
+            el.attr("width",width);
+            el.attr("height",width)
+            radar = new Chart(ctx).Radar(data,options);
+        });
+
+        el.attr("width",width);
+        el.attr("height",width);
+        var radar = new Chart(ctx).Radar(data, options);
+    }
+}
+},{}],4:[function(require,module,exports){
+module.exports = {
+	primary: "#f08332",
+	secondary: "#613573",
+	tertiary: "#ffba4f",
+	quaternary: "#2a988f",
+	quinary: "#736caf",
+	senary: "#3d4188",
+	septenary: "#2b56a3",
+	octonary: "white"
+}
+
+},{}],5:[function(require,module,exports){
 window.AppRouter = require('./AppRouter');
 window.Header    = require('./Header');
+window.Colours   = require("./Helper/Colours");
+window.Charts    = require("./Helper/Charts");
 
 $(document).on("ready",function(){
 
@@ -168,9 +270,7 @@ window.Application.ShowNavigation = function() {
 window.Application.HideNavigation = function() {
 	$('nav.main .column').slideUp();
 }
-},{"./AppRouter":1,"./Header":2}],4:[function(require,module,exports){
-var visits = 0;
-
+},{"./AppRouter":1,"./Header":2,"./Helper/Charts":3,"./Helper/Colours":4}],6:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -206,26 +306,96 @@ module.exports = Backbone.View.extend({
 
     renderCharts: function() {
 
-        if (visits > 0)
-            Pizza.init();
+        Charts.renderDoughnutChart( $("#dougnut-life"),
+            [
+                {
+                    value : 36,
+                    color: Colours.secondary,
+                    title : "Coding"
+                },
+                {
+                    value : 24,
+                    color: Colours.tertiary,
+                    title : "Sleeping"
+                },
+                {
+                    value : 14,
+                    color: Colours.quaternary,
+                    title : "Unicycling"
+                },
+                {
+                    value : 29,
+                    color: Colours.quinary,
+                    title : "Living"
+                }
+            ],
+            25
+        );
 
-        visits++;
+        Charts.renderDoughnutChart( $("#dougnut-code"),
+            [
+                {
+                    value : 16,
+                    color: Colours.secondary,
+                    title : "PHP"
+                },
+                {
+                    value : 30,
+                    color: Colours.tertiary,
+                    title : "Ruby"
+                },
+                {
+                    value : 20,
+                    color: Colours.quaternary,
+                    title : "Python"
+                },
+                {
+                    value : 15,
+                    color: Colours.quinary,
+                    title : "C/C++"
+                },
+                {
+                    value : 25,
+                    color: Colours.senary,
+                    title : "JavaScript"
+                },
+                {
+                    value : 50,
+                    color: Colours.septenary,
+                    title : "Go"
+                }
+            ],
+            25
+        );
 
-        Pizza.init("#chart-1,#chart-2,#chart-3",{
-            donut: true,
-            donut_inner_ratio: 0.6, 
-            percent_offset: 0,    
-            stroke_color: 'transparent',
-            stroke_width: 0,
-            animation_speed: 50,
-            animation_type: 'elastic',
-            always_show_text: true
-        });
+        Charts.renderDoughnutChart( $("#dougnut-overall"),
+            [
+                {
+                    value : 59,
+                    color: Colours.secondary,
+                    title : "Backend"
+                },
+                {
+                    value : 35,
+                    color: Colours.quaternary,
+                    title : "Documentation"
+                },
+                {
+                    value : 25,
+                    color: Colours.tertiary,
+                    title : "Frontend"
+                },
+                {
+                    value : 45,
+                    color: Colours.quinary,
+                    title : "Tests"
+                }
+            ],
+            25
+        );
     }
 });
-},{}],5:[function(require,module,exports){
-var visits = 0;
-
+},{}],7:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -243,27 +413,7 @@ module.exports = Backbone.View.extend({
 
      renderCharts: function() {
 
-        if (visits > 0)
-            Pizza.init();
-
-        visits++;
-
-        Pizza.init(".donut-chart",{
-            donut: true,
-            donut_inner_ratio: 0.6, 
-            percent_offset: 0,    
-            stroke_color: 'transparent',
-            stroke_width: 0,
-            animation_speed: 50,
-            animation_type: 'elastic',
-            always_show_text: true
-        });
-
-        ///////////////////////////////////
-        // Charts.js implementations
-        ///////////////////////////////////
-
-        this.renderRadarChart( $("#language-radar"), 
+        Charts.renderRadarChart( $("#language-radar"), 
                                     {
                                         labels: [ "Node.js", "PHP", "C/C++", "Python", "Ruby", "SQL", "Go"],
                                         datasets: [
@@ -290,7 +440,7 @@ module.exports = Backbone.View.extend({
                                         ]
                                     });
 
-        this.renderRadarChart( $("#paradigm-radar"), 
+        Charts.renderRadarChart( $("#paradigm-radar"), 
                                     {
                                         labels: [ "MVC", "AJAX", "Rich", "Mobile", "Scaling", "REST", "TDD" ],
                                         datasets: [
@@ -316,40 +466,117 @@ module.exports = Backbone.View.extend({
                                             },
                                         ]
                                     });
-    },
 
-    renderRadarChart: function(el, data) {
+        Charts.renderDoughnutChart( $("#dougnut-time-overall"),
+            [
+                {
+                    value : 10,
+                    color: Colours.secondary,
+                    title : "QA"
+                },
+                {
+                    value : 15,
+                    color: Colours.tertiary,
+                    title : "Talking"
+                },
+                {
+                    value : 40,
+                    color: Colours.quaternary,
+                    title : "Programming"
+                },
+                {
+                    value : 15,
+                    color: Colours.quinary,
+                    title : "Design"
+                },
+                {
+                    value : 10,
+                    color: Colours.senary,
+                    title : "Research"
+                }
+            ]
+        );
 
-        /// Get context with jQuery - using jQuery's .get() method.
-        var ctx = el.get(0).getContext("2d");
+        Charts.renderDoughnutChart( $("#dougnut-time-programming"),
+            [
+                {
+                    value : 45,
+                    color: Colours.secondary,
+                    title : "Coding"
+                },
+                {
+                    value : 15,
+                    color: Colours.quaternary,
+                    title : "Refactoring"
+                },
+                {
+                    value : 25,
+                    color: Colours.tertiary,
+                    title : "Writing tests"
+                },
+                {
+                    value : 10,
+                    color: Colours.quinary,
+                    title : "Documentation"
+                },
+                {
+                    value : 10,
+                    color: Colours.senary,
+                    title : "Version control"
+                }
+            ]
+        );
 
-        var width = $('canvas').parent().width();
+        Charts.renderDoughnutChart( $("#dougnut-time-design"),
+            [
+                {
+                    value : 30,
+                    color: Colours.tertiary,
+                    title : "Discussion"
+                },
+                {
+                    value : 50,
+                    color: Colours.secondary,
+                    title : "Documentation"
+                },
+                {
+                    value : 10,
+                    color: Colours.quaternary,
+                    title : "Diagrams"
+                },
+                {
+                    value : 10,
+                    color: Colours.quinary,
+                    title : "Physical fights"
+                }
+            ]
+        );
 
-        var options = {
-            responsive: true,
-            angleLineColor : "rgba(255,255,255,1)",
-            pointLabelFontColor : "white",
-            pointLabelFontSize : 14,
-            pointLabelFontFamily : "'Helvetica'",
-            pointLabelFontStyle : "bold",
-            scaleLineColor: "white",
-            scaleLineWidth: 2,
-            scaleShowLabels : false
-        };
-
-        el.attr("width",width);
-        el.attr("height",width);
-
-        $( window ).resize(function(event){
-            var width = el.parent().width();
-            el.attr("width",width);
-            el.attr("height",width)
-            radar = new Chart(ctx).Radar(data,options);
-        });
-
-        // This will get the first returned node in the jQuery collection.
-        var radar = new Chart(ctx).Radar(data, options);
+        Charts.renderDoughnutChart( $("#dougnut-time-talking"),
+            [
+                {
+                    value : 40,
+                    color: Colours.secondary,
+                    title : "Meetings"
+                },
+                {
+                    value : 20,
+                    color: Colours.tertiary,
+                    title : "Pedantry"
+                },
+                {
+                    value : 20,
+                    color: Colours.quaternary,
+                    title : "Philosophy"
+                },
+                {
+                    value : 20,
+                    color: Colours.quinary,
+                    title : "Puns"
+                }
+            ]
+        );
     }
 });
-},{}]},{},[3])
+},{}]},{},[5])
 ;

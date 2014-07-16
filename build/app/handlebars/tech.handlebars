@@ -49,14 +49,24 @@
 	<h4>Programming specifics</h4>
 
 	<div class="mobile-10 mobile-centered medium-uncentered medium-6 medium-reset-order columns chart content">
-		<h5>Language expertise vs fondness</h5>
+		<h5>Language <span class="secondary-text-colour">expertise</span> vs fondness</h5>
 		
 		<canvas id="language-radar" class="radar" width="300" height="460"></canvas>
+
+		<ul class="legend">
+			<li class="secondary-background-colour">Experience</li>
+			<li class="senary-background-colour">Fondness</li>
+		</ul>
 	</div>
 	<div class="mobile-10 mobile-centered medium-uncentered medium-6 medium-reset-order columns chart content">
 		<h5>Paradigm expertise vs fondness</h5>
 
 		<canvas id="paradigm-radar" class="radar" width="300" height="60"></canvas>
+
+		<ul class="legend">
+			<li class="secondary-background-colour">Experience</li>
+			<li class="senary-background-colour">Fondness</li>
+		</ul>
 	</div>
 </div>
 
@@ -117,45 +127,19 @@
 	<h4>How I typically spend my work time</h4>
 	<div class="small-10 small-centered medium-6 medium-uncentered medium-push-1 large-6 medium-reset-order large-uncentered columns chart content">
 		<h5>Overall split</h5>
-		<ul data-pie-id="chart-time-overall">
-		  <li data-value="10" data-text="QA"></li>	
-		  <li data-value="15" data-text="Talking"></li>
-		  <li data-value="40" data-text="Programming"></li>
-		  <li data-value="15" data-text="Design"></li>
-		  <li data-value="10" data-text="Research"></li>
-		</ul>
-		<div id="chart-time-overall" class="donut-chart"></div>
+		<canvas id="dougnut-time-overall" class="doughnut" width="300" height="60"></canvas>
 	</div>
 	<div class="small-10 small-centered medium-6 medium-uncentered medium-push-1 large-6 medium-reset-order large-uncentered columns chart content">
 		<h5>Programming breakdown</h5>
-		<ul data-pie-id="chart-time-programming">
-		  <li data-value="45" data-text="Writing code"></li>
-		  <li data-value="25" data-text="Writing tests"></li>
-		  <li data-value="15" data-text="Refactoring"></li>
-		  <li data-value="10" data-text="Documentation"></li>
-		  <li data-value="10" data-text="Version control"></li>
-		</ul>
-		<div id="chart-time-programming" class="donut-chart"></div>
+		<canvas id="dougnut-time-programming" class="doughnut" width="300" height="60"></canvas>
 	</div>
 	<div class="small-10 small-centered medium-6 medium-uncentered medium-push-1 large-6 medium-reset-order large-uncentered columns chart content">
 		<h5>Software design breakdown</h5>
-		<ul data-pie-id="chart-time-design">
-		  <li data-value="50" data-text="Documentation"></li>
-		  <li data-value="30" data-text="Discussion"></li>
-		  <li data-value="10" data-text="Diagrams"></li>
-		  <li data-value="10" data-text="Physical fights"></li>
-		</ul>
-		<div id="chart-time-design" class="donut-chart"></div>
+		<canvas id="dougnut-time-design" class="doughnut" width="300" height="60"></canvas>
 	</div>
 	<div class="small-10 small-centered medium-6 medium-uncentered medium-push-1 large-6 medium-reset-order large-uncentered columns chart content">
 		<h5>Talk-time breakdown</h5>
-		<ul data-pie-id="chart-time-talking">
-		  <li data-value="40" data-text="Meetings"></li>
-		  <li data-value="20" data-text="Pedantry"></li>
-		  <li data-value="20" data-text="Philosophy"></li>
-		  <li data-value="20" data-text="Puns"></li>
-		</ul>
-		<div id="chart-time-talking" class="donut-chart"></div>
+		<canvas id="dougnut-time-talking" class="doughnut" width="300" height="60"></canvas>
 	</div>
 	<div class="content columns">
 		<p>Note: the data for these time breakdowns are drawn party from observations in the field, and partly from post-event analysis, which has a chance of being influenced by the normal cogitive biases.</p>

@@ -1,5 +1,3 @@
-var visits = 0;
-
 module.exports = Backbone.View.extend({
 
     events: {
@@ -35,20 +33,92 @@ module.exports = Backbone.View.extend({
 
     renderCharts: function() {
 
-        if (visits > 0)
-            Pizza.init();
+        Charts.renderDoughnutChart( $("#dougnut-life"),
+            [
+                {
+                    value : 36,
+                    color: Colours.secondary,
+                    title : "Coding"
+                },
+                {
+                    value : 24,
+                    color: Colours.tertiary,
+                    title : "Sleeping"
+                },
+                {
+                    value : 14,
+                    color: Colours.quaternary,
+                    title : "Unicycling"
+                },
+                {
+                    value : 29,
+                    color: Colours.quinary,
+                    title : "Living"
+                }
+            ],
+            25
+        );
 
-        visits++;
+        Charts.renderDoughnutChart( $("#dougnut-code"),
+            [
+                {
+                    value : 16,
+                    color: Colours.secondary,
+                    title : "PHP"
+                },
+                {
+                    value : 30,
+                    color: Colours.tertiary,
+                    title : "Ruby"
+                },
+                {
+                    value : 20,
+                    color: Colours.quaternary,
+                    title : "Python"
+                },
+                {
+                    value : 15,
+                    color: Colours.quinary,
+                    title : "C/C++"
+                },
+                {
+                    value : 25,
+                    color: Colours.senary,
+                    title : "JavaScript"
+                },
+                {
+                    value : 50,
+                    color: Colours.septenary,
+                    title : "Go"
+                }
+            ],
+            25
+        );
 
-        Pizza.init("#chart-1,#chart-2,#chart-3",{
-            donut: true,
-            donut_inner_ratio: 0.6, 
-            percent_offset: 0,    
-            stroke_color: 'transparent',
-            stroke_width: 0,
-            animation_speed: 50,
-            animation_type: 'elastic',
-            always_show_text: true
-        });
+        Charts.renderDoughnutChart( $("#dougnut-overall"),
+            [
+                {
+                    value : 59,
+                    color: Colours.secondary,
+                    title : "Backend"
+                },
+                {
+                    value : 35,
+                    color: Colours.quaternary,
+                    title : "Documentation"
+                },
+                {
+                    value : 25,
+                    color: Colours.tertiary,
+                    title : "Frontend"
+                },
+                {
+                    value : 45,
+                    color: Colours.quinary,
+                    title : "Tests"
+                }
+            ],
+            25
+        );
     }
 });

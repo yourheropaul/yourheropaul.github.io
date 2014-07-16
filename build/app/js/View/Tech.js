@@ -1,5 +1,3 @@
-var visits = 0;
-
 module.exports = Backbone.View.extend({
 
     events: {
@@ -17,27 +15,7 @@ module.exports = Backbone.View.extend({
 
      renderCharts: function() {
 
-        if (visits > 0)
-            Pizza.init();
-
-        visits++;
-
-        Pizza.init(".donut-chart",{
-            donut: true,
-            donut_inner_ratio: 0.6, 
-            percent_offset: 0,    
-            stroke_color: 'transparent',
-            stroke_width: 0,
-            animation_speed: 50,
-            animation_type: 'elastic',
-            always_show_text: true
-        });
-
-        ///////////////////////////////////
-        // Charts.js implementations
-        ///////////////////////////////////
-
-        this.renderRadarChart( $("#language-radar"), 
+        Charts.renderRadarChart( $("#language-radar"), 
                                     {
                                         labels: [ "Node.js", "PHP", "C/C++", "Python", "Ruby", "SQL", "Go"],
                                         datasets: [
@@ -64,7 +42,7 @@ module.exports = Backbone.View.extend({
                                         ]
                                     });
 
-        this.renderRadarChart( $("#paradigm-radar"), 
+        Charts.renderRadarChart( $("#paradigm-radar"), 
                                     {
                                         labels: [ "MVC", "AJAX", "Rich", "Mobile", "Scaling", "REST", "TDD" ],
                                         datasets: [
@@ -90,38 +68,115 @@ module.exports = Backbone.View.extend({
                                             },
                                         ]
                                     });
-    },
 
-    renderRadarChart: function(el, data) {
+        Charts.renderDoughnutChart( $("#dougnut-time-overall"),
+            [
+                {
+                    value : 10,
+                    color: Colours.secondary,
+                    title : "QA"
+                },
+                {
+                    value : 15,
+                    color: Colours.tertiary,
+                    title : "Talking"
+                },
+                {
+                    value : 40,
+                    color: Colours.quaternary,
+                    title : "Programming"
+                },
+                {
+                    value : 15,
+                    color: Colours.quinary,
+                    title : "Design"
+                },
+                {
+                    value : 10,
+                    color: Colours.senary,
+                    title : "Research"
+                }
+            ]
+        );
 
-        /// Get context with jQuery - using jQuery's .get() method.
-        var ctx = el.get(0).getContext("2d");
+        Charts.renderDoughnutChart( $("#dougnut-time-programming"),
+            [
+                {
+                    value : 45,
+                    color: Colours.secondary,
+                    title : "Coding"
+                },
+                {
+                    value : 15,
+                    color: Colours.quaternary,
+                    title : "Refactoring"
+                },
+                {
+                    value : 25,
+                    color: Colours.tertiary,
+                    title : "Writing tests"
+                },
+                {
+                    value : 10,
+                    color: Colours.quinary,
+                    title : "Documentation"
+                },
+                {
+                    value : 10,
+                    color: Colours.senary,
+                    title : "Version control"
+                }
+            ]
+        );
 
-        var width = $('canvas').parent().width();
+        Charts.renderDoughnutChart( $("#dougnut-time-design"),
+            [
+                {
+                    value : 30,
+                    color: Colours.tertiary,
+                    title : "Discussion"
+                },
+                {
+                    value : 50,
+                    color: Colours.secondary,
+                    title : "Documentation"
+                },
+                {
+                    value : 10,
+                    color: Colours.quaternary,
+                    title : "Diagrams"
+                },
+                {
+                    value : 10,
+                    color: Colours.quinary,
+                    title : "Physical fights"
+                }
+            ]
+        );
 
-        var options = {
-            responsive: true,
-            angleLineColor : "rgba(255,255,255,1)",
-            pointLabelFontColor : "white",
-            pointLabelFontSize : 14,
-            pointLabelFontFamily : "'Helvetica'",
-            pointLabelFontStyle : "bold",
-            scaleLineColor: "white",
-            scaleLineWidth: 2,
-            scaleShowLabels : false
-        };
-
-        el.attr("width",width);
-        el.attr("height",width);
-
-        $( window ).resize(function(event){
-            var width = el.parent().width();
-            el.attr("width",width);
-            el.attr("height",width)
-            radar = new Chart(ctx).Radar(data,options);
-        });
-
-        // This will get the first returned node in the jQuery collection.
-        var radar = new Chart(ctx).Radar(data, options);
+        Charts.renderDoughnutChart( $("#dougnut-time-talking"),
+            [
+                {
+                    value : 40,
+                    color: Colours.secondary,
+                    title : "Meetings"
+                },
+                {
+                    value : 20,
+                    color: Colours.tertiary,
+                    title : "Pedantry"
+                },
+                {
+                    value : 20,
+                    color: Colours.quaternary,
+                    title : "Philosophy"
+                },
+                {
+                    value : 20,
+                    color: Colours.quinary,
+                    title : "Puns"
+                }
+            ]
+        );
     }
 });
