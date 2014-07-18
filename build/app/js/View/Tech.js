@@ -15,6 +15,37 @@ module.exports = Backbone.View.extend({
 
      renderCharts: function() {
 
+        Charts.renderAreaChart( $("#deployments-area"),
+                                {
+                                    labels : ["2008", "2009", "2010", "2011", "2012", "2013", "2014"],
+                                    datasets : [
+                                        {
+                                            fillColor: "rgba(97,53,115,0.85)",
+                                            strokeColor: "rgba(97,53,115,1)",
+                                            pointColor : "rgba(97,53,115,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [3,8,12,18,10,12,7],
+                                            title : "Web apps"
+                                        },
+                                        {
+                                            fillColor: "rgba(42,152,143,0.75)",
+                                            strokeColor: "rgba(42,152,143,1)",
+                                            pointColor : "rgba(42,152,143,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [13, 10, 5, 7, 8, 5, 2],
+                                            title : "Web sites"
+                                        },
+                                        {
+                                            fillColor: "rgba(61,65,136,0.75)",
+                                            strokeColor: "rgba(61,65,136,1)",
+                                            pointColor : "rgba(61,65,136,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [1,2,1,2,3,3,2],
+                                            title : "Creative          "
+                                        },
+                                    ]
+                                });
+
         Charts.renderRadarChart( $("#language-radar"), 
                                     {
                                         labels: [ "Node.js", "PHP", "C/C++", "Python", "Ruby", "SQL", "Go"],
@@ -30,7 +61,7 @@ module.exports = Backbone.View.extend({
                                                 data: [75, 99, 75, 85, 78, 90, 100]
                                             },
                                             {
-                                                label: "Love",
+                                                label: "Fondness",
                                                 fillColor: "rgba(42,152,143,0.75)",
                                                 strokeColor: "rgba(42,152,143,1)",
                                                 pointColor: "white",
@@ -44,7 +75,7 @@ module.exports = Backbone.View.extend({
 
         Charts.renderRadarChart( $("#paradigm-radar"), 
                                     {
-                                        labels: [ "MVC", "AJAX", "Rich", "Mobile", "Scaling", "REST", "TDD" ],
+                                        labels: [ "MVC", "AJAX", "BDD", "Mobile", "Scaling", "REST", "TDD" ],
                                         datasets: [
                                             {
                                                 label: "Expertise",
@@ -54,7 +85,7 @@ module.exports = Backbone.View.extend({
                                                 pointStrokeColor: "rgba(97,53,115,1)",
                                                 pointHighlightFill: "#fff",
                                                 pointHighlightStroke: "rgba(220,220,220,1)",
-                                                data: [ 85, 95, 78, 99, 95, 90, 100]
+                                                data: [ 95, 95, 78, 99, 95, 94, 100]
                                             },
                                             {
                                                 label: "Love",

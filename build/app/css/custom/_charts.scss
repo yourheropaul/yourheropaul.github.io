@@ -36,6 +36,11 @@
     }
   }
 
+  .area {
+    margin-top: 2em;
+    margin-bottom: 3em;
+  }
+
   ul.legend {
     display: block !important;
     width: 100%;
@@ -43,17 +48,17 @@
     margin-left: 0;
 
     li {
-      display: inline-block;
-      list-style: none outside none;
-      padding: 0.5em;
-      text-transform: uppercase;
-      width: 120px;
       color: white;
+      display: inline-block;
       font-family: helvetica;
       font-size: 0.75em;
       font-weight: bold;
+      height: 1.9em;
+      letter-spacing: 0;
+      list-style: none outside none;
+      padding: 0.25em;
       text-transform: uppercase;
-      height: 30px;
+      width: 120px;
     }
   }
 }

@@ -211,6 +211,10 @@ module.exports = {
         };
 
         $( window ).resize(function(event){
+
+             if (el.parent().width() == width)
+                return;
+
             width = el.parent().width();
             el.attr("width",width);
             el.attr("height",width)
@@ -220,7 +224,77 @@ module.exports = {
         el.attr("width",width);
         el.attr("height",width);
         var radar = new Chart(ctx).Radar(data, options);
-    }
+    },
+
+    renderAreaChart: function(el, data) {
+
+        /// Get context with jQuery - using jQuery's .get() method.
+        var ctx = el.get(0).getContext("2d");
+
+        var width = el.parent().width();
+
+        var options = {
+            responsive: true,
+            pointLabelFontColor : "white",
+            pointLabelFontSize : 14,
+            scaleLineColor: "white",
+            scaleLineWidth: 2,
+            animation: false,
+            inGraphDataShow : true,
+            datasetFill : true,
+            inGraphDataTmpl: "<%=v3%>",
+            inGraphDataFontSize : 15,
+            segmentShowStroke: false,
+            inGraphDataFontFamily: "'Helvetica'",
+            inGraphDataFontSize: 14,
+            inGraphDataFontStyle: "normal",
+            inGraphDataFontColor: "#fff",
+            yAxisLabelWidth: 2,
+            inGraphDataShow : true,
+            scaleLabel: "<%=value%>",
+            scaleFontSize : 14,
+            scaleOverride : true,
+            scaleSteps : 4,
+            scaleStepWidth: 5,
+            scaleStartValue : 0,
+            scaleFontColor: "white",
+            legend : true,
+            legendFontFamily : "'Helvetica'",
+            legendFontSize : 14,
+            legendFontStyle : "bold",
+            legendFontColor : "white",
+            legendBlockSize : 40,
+            legendBorders : false,
+            legendBordersSpaceBefore: 20,
+            spaceTop : 10,
+            spaceBottom : 0,
+            spaceLeft : 0,
+            spaceRight : 0,
+            dynamicDisplay : true,
+            scaleShowGridLines : false,
+        };
+
+        el.attr("width",width);
+
+        function resize() {
+
+            if (el.parent().width() == width)
+                return;
+
+            width = el.parent().width();
+            el.attr("width",width);
+
+            options.dynamicDisplay = false;
+
+            radar = new Chart(ctx).Line(data,options);
+        }
+
+        // This will get the first returned node in the jQuery collection.
+        var radar = new Chart(ctx).Line(data, options);
+        ctx.clearRect(0, 0, width, width);
+
+        $(window).bind('resize', resize);
+    },
 }
 },{}],4:[function(require,module,exports){
 module.exports = {
@@ -413,6 +487,37 @@ module.exports = Backbone.View.extend({
 
      renderCharts: function() {
 
+        Charts.renderAreaChart( $("#deployments-area"),
+                                {
+                                    labels : ["2008", "2009", "2010", "2011", "2012", "2013", "2014"],
+                                    datasets : [
+                                        {
+                                            fillColor: "rgba(97,53,115,0.85)",
+                                            strokeColor: "rgba(97,53,115,1)",
+                                            pointColor : "rgba(97,53,115,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [3,8,12,18,10,12,7],
+                                            title : "Web apps"
+                                        },
+                                        {
+                                            fillColor: "rgba(42,152,143,0.75)",
+                                            strokeColor: "rgba(42,152,143,1)",
+                                            pointColor : "rgba(42,152,143,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [13, 10, 5, 7, 8, 5, 2],
+                                            title : "Web sites"
+                                        },
+                                        {
+                                            fillColor: "rgba(61,65,136,0.75)",
+                                            strokeColor: "rgba(61,65,136,1)",
+                                            pointColor : "rgba(61,65,136,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [1,2,1,2,3,3,2],
+                                            title : "Creative          "
+                                        },
+                                    ]
+                                });
+
         Charts.renderRadarChart( $("#language-radar"), 
                                     {
                                         labels: [ "Node.js", "PHP", "C/C++", "Python", "Ruby", "SQL", "Go"],
@@ -428,7 +533,7 @@ module.exports = Backbone.View.extend({
                                                 data: [75, 99, 75, 85, 78, 90, 100]
                                             },
                                             {
-                                                label: "Love",
+                                                label: "Fondness",
                                                 fillColor: "rgba(42,152,143,0.75)",
                                                 strokeColor: "rgba(42,152,143,1)",
                                                 pointColor: "white",
@@ -442,7 +547,7 @@ module.exports = Backbone.View.extend({
 
         Charts.renderRadarChart( $("#paradigm-radar"), 
                                     {
-                                        labels: [ "MVC", "AJAX", "Rich", "Mobile", "Scaling", "REST", "TDD" ],
+                                        labels: [ "MVC", "AJAX", "BDD", "Mobile", "Scaling", "REST", "TDD" ],
                                         datasets: [
                                             {
                                                 label: "Expertise",
@@ -452,7 +557,7 @@ module.exports = Backbone.View.extend({
                                                 pointStrokeColor: "rgba(97,53,115,1)",
                                                 pointHighlightFill: "#fff",
                                                 pointHighlightStroke: "rgba(220,220,220,1)",
-                                                data: [ 85, 95, 78, 99, 95, 90, 100]
+                                                data: [ 95, 95, 78, 99, 95, 94, 100]
                                             },
                                             {
                                                 label: "Love",
