@@ -275,7 +275,7 @@ module.exports = {
         };
 
         el.attr("width",width);
-        
+
         if (width <= 640) {
             el.attr("height",width * 0.75);                
         }
@@ -302,6 +302,8 @@ module.exports = {
         ctx.clearRect(0, 0, width, width);
 
         $(window).bind('resize', resize);
+
+        resize();
     },
 }
 },{}],4:[function(require,module,exports){
