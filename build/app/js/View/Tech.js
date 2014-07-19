@@ -103,19 +103,19 @@ module.exports = Backbone.View.extend({
         Charts.renderDoughnutChart( $("#dougnut-time-investment"),
             [
                 {
-                    value : 20,
+                    value : 18,
                     color: Colours.quinary,
                     title : "System design"
                 },
                 {
                     value : 40,
                     color: Colours.tertiary,
-                    title : "Front end dev"
+                    title : "Frontend dev"
                 },
                 {
                     value : 40,
                     color: Colours.quaternary,
-                    title : "Back end dev"
+                    title : "Backend dev"
                 },
                 {
                     value : 10,
