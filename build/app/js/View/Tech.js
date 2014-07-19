@@ -100,6 +100,56 @@ module.exports = Backbone.View.extend({
                                         ]
                                     });
 
+        Charts.renderDoughnutChart( $("#dougnut-time-investment"),
+            [
+                {
+                    value : 20,
+                    color: Colours.quinary,
+                    title : "System design"
+                },
+                {
+                    value : 40,
+                    color: Colours.tertiary,
+                    title : "Front end dev"
+                },
+                {
+                    value : 40,
+                    color: Colours.quaternary,
+                    title : "Back end dev"
+                },
+                {
+                    value : 10,
+                    color: Colours.secondary,
+                    title : "SysOps"
+                }, 
+                {
+                    value : 5,
+                    color: Colours.senary,
+                    title : "Research"
+                }
+            ]
+        );
+
+        Charts.renderDoughnutChart( $("#dougnut-output-transparency"),
+            [
+                {
+                    value : 20,
+                    color: Colours.quaternary,
+                    title : "Open source"
+                },
+                {
+                    value : 80,
+                    color: Colours.secondary,
+                    title : "Closed source"
+                }, 
+                {
+                    value : 5,
+                    color: Colours.senary,
+                    title : "Licensed"
+                }
+            ]
+        );        
+
         Charts.renderDoughnutChart( $("#dougnut-time-overall"),
             [
                 {
