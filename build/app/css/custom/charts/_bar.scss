@@ -36,6 +36,10 @@ body {
   margin-bottom: 3em !important;
   border-bottom: 1px solid white;
 
+  @media #{$medium-only}, #{$small-only} {
+    margin-left: 0px;
+  } 
+
   @include bp(lake) {
     height: 425px;
     margin: 0 auto emCalc(-32px);
@@ -109,18 +113,35 @@ body {
     &.horizontal {
 
         height: auto;
+        border: none;
 
         .bar {
-            margin-top: 4px;
             height: 60px;
+            margin-right: 0px;
+
+            &.full {
+                width: 100%;
+
+                .skill {
+                    font-size: 1.8em !important;
+                    left: 0;
+                    text-align: center !important;
+                    top: 9px;
+                }
+            }
         }
 
         .skill {
             bottom: 14px;
-            font-size: 1rem;
             left: 15px;
             position: absolute;
             text-align: left;
+
+            font-size: 2.5em !important;
+            height: 60px;
+            top: -5px;
+            width: 100%;
+            font-weight: normal;
         }
 
         .percent {
@@ -128,10 +149,78 @@ body {
             font-size: 3em !important;
             height: 60px;
             letter-spacing: -3px;
-            right: 12px;
+            right: 15px;
             text-align: right;
             top: -5px;
             width: 100%;
+
+            span {
+                letter-spacing: -2px;
+            }
+        }
+
+        .bar {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        @media #{$medium-only}, #{$small-only} {
+
+            .skill {
+                font-size: 2.3em !important;
+                top: 4px;
+            }
+
+            .bar {
+                margin-left: 0px !important;
+            }
+
+            .skill {
+                width: 50%; 
+            }
+        }
+
+        @media #{$small-only} {
+
+            .bar {
+                width: 100% !important;
+            }
+
+            .percent {
+                color: white;
+                font-size: 2.3em !important;
+                height: 60px;
+                letter-spacing: -3px;
+                position: absolute;
+                right: 23px;
+                text-align: right;
+                top: 3px;
+                width: 100%;
+            }
+        }
+
+        @media #{$large-up} {
+
+            &.align-right {
+                text-align: right;
+
+                .bar {
+                    display: inline-block;
+                    margin-bottom: 4px;
+                }
+
+                .skill {
+                    right: 15px;
+                    left: inherit;
+                    text-align: right;
+                }
+
+                .percent {
+                    text-align: left;
+                    right: inherit;
+                    left: 15px;
+                }
+            }
         }
     }
 }

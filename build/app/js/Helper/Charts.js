@@ -138,6 +138,10 @@ module.exports = {
         };
 
         el.attr("width",width);
+        
+        if (width <= 640) {
+            el.attr("height",width * 0.75);                
+        }
 
         function resize() {
 
@@ -146,6 +150,10 @@ module.exports = {
 
             width = el.parent().width();
             el.attr("width",width);
+
+            if (width <= 640) {
+                el.attr("height",width * 0.75);                
+            }
 
             options.dynamicDisplay = false;
 
