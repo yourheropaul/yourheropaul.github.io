@@ -190,7 +190,7 @@ module.exports = {
         $(window).bind('resize', resize);
     },
 
-    renderRadarChart: function(el, data) {
+    renderRadarChart: function(el, data, fixed) {
 
         /// Get context with jQuery - using jQuery's .get() method.
         var ctx = el.get(0).getContext("2d");
@@ -209,6 +209,13 @@ module.exports = {
             scaleShowLabels : false,
             animation: false,
         };
+
+        if (typeof fixed != "undefined" && fixed) {
+            options.scaleOverride = true;
+            options.scaleSteps = 4;
+            options.scaleStepWidth = 25;
+            options.scaleStartValue = 0;
+        }
 
         $( window ).resize(function(event){
 
@@ -304,6 +311,65 @@ module.exports = {
         $(window).bind('resize', resize);
 
         resize();
+    },
+
+    renderPolarChart: function(el, data, margin, top) {
+
+        var margin = (typeof margin == "undefined") ? 50 : margin;
+
+        /// Get context with jQuery - using jQuery's .get() method.
+        var ctx = el.get(0).getContext("2d");
+
+        var width = el.parent().width();
+
+        var options = {
+            responsive: true,
+            pointLabelFontColor : "white",
+            pointLabelFontSize : 14,
+            scaleLineColor: "rgba(255,255,255,0.2)",
+            scaleLineWidth: 2,
+            scaleShowLabels : false,
+            animation: false,
+            inGraphDataShow : true,
+            datasetFill : true,
+            inGraphDataTmpl: "<%=v1%>",
+            spaceLeft : margin,
+            spaceRight : margin,
+            spaceTop : -60,
+            spaceBottom : 0,
+            inGraphDataFontSize : 15,
+            segmentShowStroke: false,
+            inGraphDataFontFamily: "'Helvetica'",
+            inGraphDataFontSize: 14,
+            inGraphDataFontStyle: "bold",
+            inGraphDataFontColor: "#fff",
+            startAngle : 0,
+            logarithmic: true,
+            scaleOverride : true,
+            scaleSteps : 8,
+            scaleStepWidth: 5,
+            scaleStartValue : 0,
+        };
+
+        el.attr("width",width);
+        el.attr("height",width);
+
+        function resize() {
+
+            if (el.parent().width() == width)
+                return;
+
+            width = el.parent().width();
+            el.attr("width",width);
+            el.attr("height",width)
+            radar = new Chart(ctx).PolarArea(data,options);
+        }
+
+        // This will get the first returned node in the jQuery collection.
+        var radar = new Chart(ctx).PolarArea(data, options);
+        ctx.clearRect(0, 0, width, width);
+
+        $(window).bind('resize', resize);
     },
 }
 },{}],4:[function(require,module,exports){
@@ -631,6 +697,68 @@ module.exports = Backbone.View.extend({
                 }
             ]
         );        
+
+        Charts.renderPolarChart( $("#polar-framework"),
+            [
+                {
+                    value : 30,
+                    color: Colours.secondary,
+                    title : "Angular"
+                },
+                {
+                    value : 40,
+                    color: Colours.tertiary,
+                    title : "jQuery"
+                },
+                {
+                    value : 35,
+                    color: Colours.quaternary,
+                    title : "DART"
+                },
+                {
+                    value : 15,
+                    color: Colours.quinary,
+                    title : "React"
+                },
+                {
+                    value : 35,
+                    color: Colours.senary,
+                    title : "Backbone"
+                },
+                {
+                    value : 25,
+                    color: Colours.septenary,
+                    title : "Ember"
+                }
+            ]
+        );
+
+        Charts.renderRadarChart( $("#radar-markup"), 
+                                    {
+                                        labels: [ "XSLT", "Handlebars", "Go Tmpl", "Smarty", "ERB", "Django", "Mustache" ],
+                                        datasets: [
+                                            {
+                                                label: "Expertise",
+                                                fillColor: "rgba(97,53,115,0.85)",
+                                                strokeColor: "rgba(97,53,115,1)",
+                                                pointColor: "white",
+                                                pointStrokeColor: "rgba(97,53,115,1)",
+                                                pointHighlightFill: "#fff",
+                                                pointHighlightStroke: "rgba(220,220,220,1)",
+                                                data: [ 100, 75, 95, 68, 81, 65, 70]
+                                            },
+                                            {
+                                                label: "Love",
+                                                fillColor: "rgba(42,152,143,0.75)",
+                                                strokeColor: "rgba(42,152,143,1)",
+                                                pointColor: "white",
+                                                pointStrokeColor: "rgba(42,152,143,1",
+                                                pointHighlightFill: "#fff",
+                                                pointHighlightStroke: "rgba(151,187,205,1)",
+                                                data: [60, 75, 100, 20, 60, 30, 85, ]
+                                            },
+                                        ]
+                                    }, true);
 
         Charts.renderDoughnutChart( $("#dougnut-time-overall"),
             [

@@ -150,6 +150,68 @@ module.exports = Backbone.View.extend({
             ]
         );        
 
+        Charts.renderPolarChart( $("#polar-framework"),
+            [
+                {
+                    value : 30,
+                    color: Colours.secondary,
+                    title : "Angular"
+                },
+                {
+                    value : 40,
+                    color: Colours.tertiary,
+                    title : "jQuery"
+                },
+                {
+                    value : 35,
+                    color: Colours.quaternary,
+                    title : "DART"
+                },
+                {
+                    value : 15,
+                    color: Colours.quinary,
+                    title : "React"
+                },
+                {
+                    value : 35,
+                    color: Colours.senary,
+                    title : "Backbone"
+                },
+                {
+                    value : 25,
+                    color: Colours.septenary,
+                    title : "Ember"
+                }
+            ]
+        );
+
+        Charts.renderRadarChart( $("#radar-markup"), 
+                                    {
+                                        labels: [ "XSLT", "Handlebars", "Go Tmpl", "Smarty", "ERB", "Django", "Mustache" ],
+                                        datasets: [
+                                            {
+                                                label: "Expertise",
+                                                fillColor: "rgba(97,53,115,0.85)",
+                                                strokeColor: "rgba(97,53,115,1)",
+                                                pointColor: "white",
+                                                pointStrokeColor: "rgba(97,53,115,1)",
+                                                pointHighlightFill: "#fff",
+                                                pointHighlightStroke: "rgba(220,220,220,1)",
+                                                data: [ 100, 75, 95, 68, 81, 65, 70]
+                                            },
+                                            {
+                                                label: "Love",
+                                                fillColor: "rgba(42,152,143,0.75)",
+                                                strokeColor: "rgba(42,152,143,1)",
+                                                pointColor: "white",
+                                                pointStrokeColor: "rgba(42,152,143,1",
+                                                pointHighlightFill: "#fff",
+                                                pointHighlightStroke: "rgba(151,187,205,1)",
+                                                data: [60, 75, 100, 20, 60, 30, 85, ]
+                                            },
+                                        ]
+                                    }, true);
+
         Charts.renderDoughnutChart( $("#dougnut-time-overall"),
             [
                 {
