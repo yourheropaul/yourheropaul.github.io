@@ -212,6 +212,37 @@ module.exports = Backbone.View.extend({
                                         ]
                                     }, true);
 
+        Charts.renderStackedBarChart( $("#committed-bar"), 
+                                {
+                                    labels : ["January", "Feburary", "March", "April", "May", "June"],
+                                    datasets : [
+                                        {
+                                            fillColor: "rgba(97,53,115,0.85)",
+                                            strokeColor: "rgba(97,53,115,1)",
+                                            pointColor : "rgba(97,53,115,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [4610,5812,7222,2893,3412,1948],
+                                            title : "Backend"
+                                        },
+                                        {
+                                            fillColor: "rgba(42,152,143,0.75)",
+                                            strokeColor: "rgba(42,152,143,1)",
+                                            pointColor : "rgba(42,152,143,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [3512,1672,2428,3680,4219,5708],
+                                            title : "Frontend"
+                                        },
+                                        {
+                                            fillColor: "rgba(61,65,136,0.75)",
+                                            strokeColor: "rgba(61,65,136,1)",
+                                            pointColor : "rgba(61,65,136,1)",
+                                            pointStrokeColor : "#fff",
+                                            data : [3032,2601,3896,2081,1082,1552],
+                                            title : "Markup        "
+                                        },
+                                    ]
+                                });
+
         Charts.renderDoughnutChart( $("#dougnut-time-overall"),
             [
                 {
