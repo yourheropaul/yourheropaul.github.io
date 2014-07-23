@@ -1,47 +1,4 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var IndexView = require('./view/Index'),
-    TechView  = require('./view/Tech');
-
-module.exports = Backbone.Router.extend({
-
-    first_view: true,
-
-    routes: {
-      "": "index",
-      "tech": "tech"
-    },
-
-    changeView: function(view, class_name, scroll) {
-
-      if ( null != this.currentView ) {
-        this.currentView.undelegateEvents();
-      }
-
-      this.currentView = view;
-      this.currentView.render();
-
-      if (scroll) {
-          $.scrollTo($("#app"),800, {offset: {top: -50}});
-      } else {
-        $.scrollTo(0,800);
-      }
-
-      if (!this.first_view){
-          Application.ShowNavigation();
-      }
-
-      this.first_view = false;
-    },
-
-    index: function() {
-        this.changeView(new IndexView({ el:$('#app') }), "landing", false);
-    },
-
-    tech: function() {
-        this.changeView(new TechView({ el:$('#app') }), "tech", true);
-    },
-});
-},{"./view/Index":6,"./view/Tech":7}],2:[function(require,module,exports){
 $(document).on("ready",function(){
 
 	var data_index = "colour-index";
@@ -49,12 +6,12 @@ $(document).on("ready",function(){
 	var spans = $('span',header);
 
 	var colours = shuffle([
-					"#736caf",
-					"#3d4188",
-					"#2b56a3",
-					"#613573",
-					"#2a988f",
-					"#ffba4f"
+					Colours.secondary,
+					Colours.tertiary,
+					Colours.quaternary,
+					Colours.quinary,
+					Colours.senary,
+					Colours.septenary
 				]);
 
 	colours.unshift("#ffffff");
@@ -113,6 +70,7 @@ $(document).on("ready",function(){
 	});	
 
 	function shuffle(array) {
+
 	    var counter = array.length, temp, index;
 
 	    // While there are elements in the array
@@ -134,7 +92,7 @@ $(document).on("ready",function(){
 	}
 
 });
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 module.exports = {
 	
 	renderDoughnutChart: function(el, data, margin, top) {
@@ -449,7 +407,7 @@ module.exports = {
         $(window).bind('resize', resize);
     },
 }
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 module.exports = {
 	primary: "#f08332",
 	secondary: "#613573",
@@ -461,19 +419,16 @@ module.exports = {
 	octonary: "white"
 }
 
-},{}],5:[function(require,module,exports){
-window.AppRouter = require('./AppRouter');
-window.Header    = require('./Header');
-window.Colours   = require("./Helper/Colours");
-window.Charts    = require("./Helper/Charts");
-
-$(document).on("ready",function(){
-
-	Router = new AppRouter();
-	Backbone.history.start();
-	$(document).foundation();
+},{}],4:[function(require,module,exports){
+// Partials hacks
+Handlebars.registerHelper('partial', function(templateName,context){
+    return new Handlebars.SafeString(Templates[templateName](this));
 });
 
+Handlebars.registerHelper('partial_param', function(templateName,context){
+    return new Handlebars.SafeString(Templates[templateName](context));
+});
+},{}],5:[function(require,module,exports){
 window.Application = window.Application || {};
 
 window.Application.ShowNavigation = function() {
@@ -497,7 +452,150 @@ window.Application.ShowNavigation = function() {
 window.Application.HideNavigation = function() {
 	$('nav.main .column').slideUp();
 }
-},{"./AppRouter":1,"./Header":2,"./Helper/Charts":3,"./Helper/Colours":4}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
+var IndexView    = require('./view/Index'),
+    TechView     = require('./view/Tech'),
+    ContactView  = require('./view/Contact');
+
+module.exports = Backbone.Router.extend({
+
+    first_view: true,
+
+    routes: {
+      "":        "index",
+      "tech":    "tech",
+      "contact": "contact"
+    },
+
+    changeView: function(view, scroll) {
+
+        if ( null != this.currentView ) {
+            this.currentView.undelegateEvents();
+        }
+
+        this.currentView = view;
+        this.currentView.render();
+
+        if (scroll) {
+            $.scrollTo($("#app"),800, {offset: {top: -40}});
+        } else {
+            $.scrollTo(0,800);
+        }
+
+        if (!this.first_view){
+            Application.ShowNavigation();
+        }
+
+        this.first_view = false;
+    },
+
+    index: function() {
+        this.changeView(new IndexView({ el:$('#app') }), false);
+    },
+
+    tech: function() {
+        this.changeView(new TechView({ el:$('#app') }), true);
+    },
+
+    contact: function() {
+        this.changeView(new ContactView({ el:$('#app') }), true);
+    },
+});
+},{"./view/Contact":8,"./view/Index":9,"./view/Tech":10}],7:[function(require,module,exports){
+// Plugins and extensions
+require("./Helper/Handlebars");
+require("./Navigation");
+
+// Global-scope help definitions
+window.Router 	 = require('./Router');
+window.Header    = require('./Header');
+window.Colours   = require("./Helper/Colours");
+window.Charts    = require("./Helper/Charts");
+
+// Startup routines
+$(document).on("ready",function(){
+
+	Router = new Router();
+	Backbone.history.start();
+	$(document).foundation();
+});
+
+},{"./Header":1,"./Helper/Charts":2,"./Helper/Colours":3,"./Helper/Handlebars":4,"./Navigation":5,"./Router":6}],8:[function(require,module,exports){
+module.exports = Backbone.View.extend({
+
+    events: {
+    	"click a.link": "link"
+    },
+
+    // generate the view
+    render: function() {
+
+        this.$el.html(Templates["contact"]({}));
+
+        this.renderCharts();
+
+        return this;
+    },
+
+    renderCharts: function() {
+
+        Charts.renderDoughnutChart( $("#dougnut-split"),
+            [
+                {
+                    value : 40,
+                    color: Colours.quinary,
+                    title : "Slack"
+                },
+                {
+                    value : 20,
+                    color: Colours.tertiary,
+                    title : "Google hangouts"
+                },
+                {
+                    value : 10,
+                    color: Colours.quaternary,
+                    title : "Skype"
+                },
+                {
+                    value : 20,
+                    color: Colours.secondary,
+                    title : "Email"
+                }
+            ]
+        );
+
+        Charts.renderDoughnutChart( $("#dougnut-new-work"),
+            [
+                {
+                    value : 5,
+                    color: Colours.quinary,
+                    title : "Slack"
+                },
+                {
+                    value : 15,
+                    color: Colours.quaternary,
+                    title : "Skype"
+                },
+                {
+                    value : 20,
+                    color: Colours.tertiary,
+                    title : "Hangouts"
+                },
+                {
+                    value : 50,
+                    color: Colours.secondary,
+                    title : "Email"
+                }
+            ]
+        );   
+    },
+
+    link: function(e) {
+    	location.href = $(e.target).data("link");
+    	return false;
+    }
+});
+},{}],9:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -622,7 +720,7 @@ module.exports = Backbone.View.extend({
         );
     }
 });
-},{}],7:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -638,7 +736,7 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
-     renderCharts: function() {
+    renderCharts: function() {
 
         Charts.renderAreaChart( $("#deployments-area"),
                                 {
@@ -979,5 +1077,5 @@ module.exports = Backbone.View.extend({
         );
     }
 });
-},{}]},{},[5])
+},{}]},{},[7])
 ;

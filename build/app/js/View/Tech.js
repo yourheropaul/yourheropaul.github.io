@@ -13,7 +13,7 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
-     renderCharts: function() {
+    renderCharts: function() {
 
         Charts.renderAreaChart( $("#deployments-area"),
                                 {

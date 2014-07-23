@@ -5,12 +5,12 @@ $(document).on("ready",function(){
 	var spans = $('span',header);
 
 	var colours = shuffle([
-					"#736caf",
-					"#3d4188",
-					"#2b56a3",
-					"#613573",
-					"#2a988f",
-					"#ffba4f"
+					Colours.secondary,
+					Colours.tertiary,
+					Colours.quaternary,
+					Colours.quinary,
+					Colours.senary,
+					Colours.septenary
 				]);
 
 	colours.unshift("#ffffff");
@@ -69,6 +69,7 @@ $(document).on("ready",function(){
 	});	
 
 	function shuffle(array) {
+
 	    var counter = array.length, temp, index;
 
 	    // While there are elements in the array
