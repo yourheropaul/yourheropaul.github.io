@@ -388,8 +388,6 @@ module.exports = {
         var radar = new Chart(ctx).StackedBar(data, options);
 
         $(window).bind('resize', resize);
-
-        resize();
     },
 
     renderPolarChart: function(el, data, margin, top) {
