@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 @mixin rotate($rotate) {
 	-ms-transform: rotate($rotate); /* IE 9 */
 	-webkit-transform: rotate($rotate); /* Chrome, Safari, Opera */
@@ -64,16 +66,49 @@
 		    }
 		}
 
+		@media #{$small-only} {
+
+			width: 100% !important;
+			margin: 0px;
+
+			.component {
+				width: 100% !important;
+				margin: 0px;
+			}
+		}
+
 		.component {
 			background-color: #613573;
 			height: 173px;
 			width: 173px;
 
-		    display: flex;
+			@include display-box;
+			@include box-align(center);
+
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flexbox;
+		    display: flex; 
+
 		    align-items: center;
+		    -webkit-align-items: center;
+		    -moz-align-items: center;
+		    -ms-align-items: center;
+
 		    justify-content: center;
+		    -webkit-justify-content: center;
+		    -moz-justify-content: center;
+		    -ms-justify-content: center;
+
 		    flex-direction: column;
-		    align-content: center;
+		    -webkit-flex-direction: column;
+		    -moz-flex-direction: column;
+		    -ms-flex-direction: column;
+
+		    align-content: center; 
+		    -webkit-align-content: center; 
+		    -moz-align-content: center; 
+		    -ms-align-content: center; 
 
 		    hr {
 		    	display: block;
@@ -137,19 +172,17 @@
 
 				@include box-sizing(border-box);
 
-				color: $purple;
-
 				&.a { 
 					overflow: visible;
-					background: transparent url(../images/graphs-nr.png) center no-repeat; 
+					background: white url(../images/graphs-nr.png) center no-repeat; 
 				}
 
 				&.b { 
-					background: transparent url(../images/graphs-ccw.png) center no-repeat;
+					background: white url(../images/graphs-ccw.png) center no-repeat;
 					
 				}
 				&.c { 
-					background: transparent url(../images/graphs-cw.png) center no-repeat; 
+					background: white url(../images/graphs-cw.png) center no-repeat; 
 				}
 			}
 		}
