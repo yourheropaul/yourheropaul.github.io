@@ -88,6 +88,11 @@ h4 {
 		    list-style: none outside none;
 		    padding: 0.5em;
 		    text-transform: uppercase;
+
+		    &:hover {
+		    	background-color: $turquoise;
+		    	color: white;
+		    }
     	}
     }
 
@@ -222,12 +227,23 @@ h4 {
     	}
 
     	&.standout {
-    		color: $orange;
+    		color: white;
 		    font-size: 1.2em;
 		    line-height: 1.5em;
 		    margin-top: 2em;
 		    padding: 1.5em;
-		    background-color: white;
+		    background-color: rgba($yellow, 0.5);;
+    	}
+
+    	a {
+    		background-color: rgba($yellow, 0.5);
+		    color: white;
+		    padding: 2px 4px;
+
+		    &:hover {
+		    	background-color: rgba($turquoise, 0.75);
+		    	color: white;
+		    }
     	}
 	}
 
