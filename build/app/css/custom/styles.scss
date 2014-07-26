@@ -279,6 +279,18 @@ h4 {
 		    margin-left: 3em;
 		    padding: 10px 8px 7px 7px;
 	    }
+
+	    @media #{$small-only} {
+	    	display: block;
+
+	    	span {
+	    		display: block !important;
+	    		margin-left: 0 !important;
+	    		padding-right: 0 !important;
+	    		width: 50%;
+	    		margin-bottom: 6px !important;
+	    	}
+	    }
 	}
 
 	&.content-only p:first-of-type {
