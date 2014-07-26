@@ -235,8 +235,11 @@ h4 {
 		    background-color: rgba($yellow, 0.5);;
 
 		    &.push {
-		    	margin-top: 0;
 		    	margin-bottom: 0;
+		    }
+
+		    &.pull {
+		    	margin-top: 0;
 		    }
 
 		    &.secondary {
@@ -246,8 +249,12 @@ h4 {
 
 		    	&:last-of-type {
 		    		border-bottom: 1px solid rgba(white, 0.5);
-		    		margin-bottom: 1.5em;
+		    		margin-bottom: 4em;
 		    	}		    	
+
+		    	&.close {
+		    		margin-bottom: 1em !important;
+		    	}
 		    }
     	}
 
