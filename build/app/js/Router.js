@@ -1,6 +1,7 @@
-var IndexView    = require('./view/Index'),
-    TechView     = require('./view/Tech'),
-    ContactView  = require('./view/Contact');
+var IndexView        = require('./view/Index'),
+    TechView         = require('./view/Tech'),
+    ContactView      = require('./view/Contact'),
+    BenefactorsView  = require('./view/Benefactors');
 
 module.exports = Backbone.Router.extend({
 
@@ -9,7 +10,8 @@ module.exports = Backbone.Router.extend({
     routes: {
       "":        "index",
       "tech":    "tech",
-      "contact": "contact"
+      "contact": "contact",
+      "benefactors": "benefactors"
     },
 
     changeView: function(view, scroll) {
@@ -44,5 +46,9 @@ module.exports = Backbone.Router.extend({
 
     contact: function() {
         this.changeView(new ContactView({ el:$('#app') }), true);
+    },
+
+    benefactors: function() {
+        this.changeView(new BenefactorsView({ el:$('#app') }), true);
     },
 });

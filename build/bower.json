@@ -13,7 +13,8 @@
     "jquery-get-urlparam": "https://github.com/sokai/jquery.getUrlParam/archive/master.zip",
     "jquery.validation": "1.11.1",
     "backbone.epoxy": "1.0.3",
-    "json2": "*"
+    "json2": "*",
+    "vis": "*"
   },
   "devDependencies": {},
   "exportsOverride": {

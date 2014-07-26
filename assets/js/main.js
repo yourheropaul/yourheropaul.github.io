@@ -406,6 +406,16 @@ module.exports = {
 
         $(window).bind('resize', resize);
     },
+
+    renderTimeline: function(el, groups, items, options ) {
+
+        var container = el[0];
+        var timeline = new vis.Timeline(container);
+
+        timeline.setOptions(options);
+        timeline.setGroups(groups);
+        timeline.setItems(items);
+    }
 }
 },{}],3:[function(require,module,exports){
 module.exports = {
@@ -453,9 +463,10 @@ window.Application.HideNavigation = function() {
 	$('nav.main .column').slideUp();
 }
 },{}],6:[function(require,module,exports){
-var IndexView    = require('./view/Index'),
-    TechView     = require('./view/Tech'),
-    ContactView  = require('./view/Contact');
+var IndexView        = require('./view/Index'),
+    TechView         = require('./view/Tech'),
+    ContactView      = require('./view/Contact'),
+    BenefactorsView  = require('./view/Benefactors');
 
 module.exports = Backbone.Router.extend({
 
@@ -464,7 +475,8 @@ module.exports = Backbone.Router.extend({
     routes: {
       "":        "index",
       "tech":    "tech",
-      "contact": "contact"
+      "contact": "contact",
+      "benefactors": "benefactors"
     },
 
     changeView: function(view, scroll) {
@@ -500,8 +512,12 @@ module.exports = Backbone.Router.extend({
     contact: function() {
         this.changeView(new ContactView({ el:$('#app') }), true);
     },
+
+    benefactors: function() {
+        this.changeView(new BenefactorsView({ el:$('#app') }), true);
+    },
 });
-},{"./view/Contact":8,"./view/Index":9,"./view/Tech":10}],7:[function(require,module,exports){
+},{"./view/Benefactors":8,"./view/Contact":9,"./view/Index":10,"./view/Tech":11}],7:[function(require,module,exports){
 // Plugins and extensions
 require("./Helper/Handlebars");
 require("./Navigation");
@@ -521,6 +537,45 @@ $(document).on("ready",function(){
 });
 
 },{"./Header":1,"./Helper/Charts":2,"./Helper/Colours":3,"./Helper/Handlebars":4,"./Navigation":5,"./Router":6}],8:[function(require,module,exports){
+module.exports = Backbone.View.extend({
+
+    events: {
+    },
+
+    // generate the view
+    render: function() {
+
+        this.$el.html(Templates["benefactors"]({}));
+
+        Charts.renderTimeline( $('#timeline'), 
+
+                               new vis.DataSet([
+                                    {id: 0, content: 'Location', value: 1},
+                                    {id: 1, content: 'Benefactor', value: 3},
+                                  ]), 
+
+                               new vis.DataSet([
+                                    {id: 1, group: 0, content: 'Sydney', 'className': 'secondary-background-colour', start: new Date(2006, 8, 11), end: new Date(2008, 1, 11)},
+                                    {id: 2, group: 0, content: 'Singapore', 'className': 'tertiary-background-colour', start: new Date(2008, 1, 12), end: new Date(2008, 11, 28)},
+                                    {id: 3, group: 0, content: 'London', 'className': 'quaternary-background-colour', start: new Date(2008, 11, 29), end: new Date(2014, 1, 30)},
+                                    {id: 4, group: 0, content: 'Brighton', 'className': 'secondary-background-colour', start: new Date(2014, 0, 0), end: new Date()},
+                                    {id: 10, group: 1, content: 'Suede', 'className': 'quinary-background-colour', start: new Date(2006, 8, 11), end: new Date(2008, 1, 20)},
+                                    {id: 11, group: 1, content: 'Push', 'className': 'senary-background-colour', start: new Date(2008, 1, 1), end: new Date(2008, 11, 29)},
+                                    {id: 12, group: 1, content: 'Airlock', 'className': 'septenary-background-colour', start: new Date(2008, 11, 29), end: new Date(2010, 4, 15)},
+                                    {id: 13, group: 1, content: 'HomeMade Digital', 'className': 'quinary-background-colour', start: new Date(2010, 4, 15), end: new Date()},
+                                  ]), 
+
+                               {             
+                                    editable: false,
+                                    min: new Date(2007, 1, 1),         
+                                    max: new Date(2015, 0, 1),        
+                               } 
+                            );
+
+        return this;
+    }
+});
+},{}],9:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -595,7 +650,7 @@ module.exports = Backbone.View.extend({
     	return false;
     }
 });
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -720,7 +775,7 @@ module.exports = Backbone.View.extend({
         );
     }
 });
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {

@@ -311,4 +311,14 @@ module.exports = {
 
         $(window).bind('resize', resize);
     },
+
+    renderTimeline: function(el, groups, items, options ) {
+
+        var container = el[0];
+        var timeline = new vis.Timeline(container);
+
+        timeline.setOptions(options);
+        timeline.setGroups(groups);
+        timeline.setItems(items);
+    }
 }

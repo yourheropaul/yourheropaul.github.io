@@ -233,18 +233,52 @@ h4 {
 		    margin-top: 2em;
 		    padding: 1.5em;
 		    background-color: rgba($yellow, 0.5);;
+
+		    &.push {
+		    	margin-top: 0;
+		    	margin-bottom: 0;
+		    }
+
+		    &.secondary {
+		    	margin: 0;
+		    	padding-top: 0px;
+		    	font-size: 1em;
+
+		    	&:last-of-type {
+		    		border-bottom: 1px solid rgba(white, 0.5);
+		    		margin-bottom: 1.5em;
+		    	}		    	
+		    }
     	}
 
     	a {
     		background-color: rgba($yellow, 0.5);
+		    border-bottom: 1px dotted rgba(white,0.75);
 		    color: white;
-		    padding: 2px 4px;
+		    padding: 0 2px;
 
 		    &:hover {
-		    	background-color: rgba($turquoise, 0.75);
 		    	color: white;
+		    	background-color: rgba($yellow, 0.6);
+		    	border-bottom: 1px solid rgba(white,0.75);
 		    }
     	}
+	}
+
+	h5 {
+		background-color: white;
+	    color: $orange;
+	    display: inline-block;
+	    padding: 7px 0px 4px 10px;
+	    text-transform: uppercase;
+	    margin-bottom: 0px;
+
+	    span {
+	    	background-color: #ffba4f;
+		    color: white;
+		    margin-left: 3em;
+		    padding: 10px 8px 7px 7px;
+	    }
 	}
 
 	&.content-only p:first-of-type {
