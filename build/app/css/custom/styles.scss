@@ -252,14 +252,12 @@ h4 {
     	}
 
     	a {
-    		background-color: rgba($yellow, 0.5);
 		    border-bottom: 1px dotted rgba(white,0.75);
 		    color: white;
 		    padding: 0 2px;
 
 		    &:hover {
 		    	color: white;
-		    	background-color: rgba($yellow, 0.6);
 		    	border-bottom: 1px solid rgba(white,0.75);
 		    }
     	}
