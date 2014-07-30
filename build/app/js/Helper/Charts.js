@@ -140,7 +140,7 @@ module.exports = {
             spaceBottom : 0,
             spaceLeft : 0,
             spaceRight : 0,
-            dynamicDisplay : true,
+            dynamicDisplay : false,
             scaleShowGridLines : false,
         };
 
@@ -169,7 +169,6 @@ module.exports = {
 
         // This will get the first returned node in the jQuery collection.
         var radar = new Chart(ctx).Line(data, options);
-        ctx.clearRect(0, 0, width, width);
 
         $(window).bind('resize', resize);
 
@@ -220,7 +219,7 @@ module.exports = {
             spaceBottom : 0,
             spaceLeft : 0,
             spaceRight : 0,
-            dynamicDisplay : true,
+            dynamicDisplay : false,
             scaleShowGridLines : false,
         };
 
@@ -241,8 +240,6 @@ module.exports = {
             if (width <= 640) {
                 el.attr("height",width * 0.75);                
             }
-
-            options.dynamicDisplay = false;
 
             radar = new Chart(ctx).StackedBar(data,options);
         }
