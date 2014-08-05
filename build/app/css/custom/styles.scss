@@ -75,7 +75,7 @@ h4 {
 
     &.call-to-action {
     	text-align: center;
-    	margin-bottom: 40px;
+    	margin-bottom: 4em;
 
     	a {
 			color: $orange;
@@ -322,6 +322,10 @@ h4 {
 		    	&:last-of-type {
 		    		border-bottom: 1px solid rgba(white, 0.5);
 		    		margin-bottom: 4em;
+
+		    		&.pull {
+		    			margin-bottom: 1em;
+		    		}
 		    	}		    	
 
 		    	&.close {
