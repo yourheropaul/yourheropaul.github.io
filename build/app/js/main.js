@@ -7,6 +7,7 @@ window.Router 	 = require('./Router');
 window.Header    = require('./Header');
 window.Colours   = require("./Helper/Colours");
 window.Charts    = require("./Helper/Charts");
+window.Linkify   = require("./Helper/Links");
 
 // Startup routines
 $(document).on("ready",function(){

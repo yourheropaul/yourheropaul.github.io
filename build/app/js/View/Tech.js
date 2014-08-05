@@ -214,14 +214,14 @@ module.exports = Backbone.View.extend({
 
         Charts.renderStackedBarChart( $("#committed-bar"), 
                                 {
-                                    labels : ["January", "Feburary", "March", "April", "May", "June"],
+                                    labels : ["Feburary", "March", "April", "May", "June", "July"],
                                     datasets : [
                                         {
                                             fillColor: "rgba(97,53,115,0.85)",
                                             strokeColor: "rgba(97,53,115,1)",
                                             pointColor : "rgba(97,53,115,1)",
                                             pointStrokeColor : "#fff",
-                                            data : [4610,5812,7222,2893,3412,1948],
+                                            data : [5812,7222,2893,3412,1948,4610],
                                             title : "Backend"
                                         },
                                         {
@@ -229,7 +229,7 @@ module.exports = Backbone.View.extend({
                                             strokeColor: "rgba(42,152,143,1)",
                                             pointColor : "rgba(42,152,143,1)",
                                             pointStrokeColor : "#fff",
-                                            data : [3512,1672,2428,3680,4219,5708],
+                                            data : [1672,2428,3680,4219,5708,3512],
                                             title : "Frontend"
                                         },
                                         {
@@ -237,7 +237,7 @@ module.exports = Backbone.View.extend({
                                             strokeColor: "rgba(61,65,136,1)",
                                             pointColor : "rgba(61,65,136,1)",
                                             pointStrokeColor : "#fff",
-                                            data : [3032,2601,3896,2081,1082,1552],
+                                            data : [2601,3896,2081,1082,1552,3032],
                                             title : "Markup        "
                                         },
                                     ]

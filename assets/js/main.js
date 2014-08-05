@@ -90,7 +90,6 @@ $(document).on("ready",function(){
 
 	    return array;
 	}
-
 });
 },{}],2:[function(require,module,exports){
 module.exports = {
@@ -436,6 +435,49 @@ Handlebars.registerHelper('partial_param', function(templateName,context){
     return new Handlebars.SafeString(Templates[templateName](context));
 });
 },{}],5:[function(require,module,exports){
+var supports3DTransforms = false;
+
+$(document).on("ready",function(){
+    supports3DTransforms = document.body.style['webkitPerspective'] !== undefined || 
+                           document.body.style['MozPerspective'] !== undefined;
+});
+
+module.exports = {
+    
+    Linkify: function(selector) {
+
+        if( supports3DTransforms ) {
+            
+            var nodes = document.querySelectorAll( selector );
+
+            for( var i = 0, len = nodes.length; i < len; i++ ) {
+                var node = nodes[i];
+
+                if( !node.className || !node.className.match( /roll/g ) ) {
+                    node.className += ' roll';
+                    node.innerHTML = '<span data-title="'+ node.text +'">' + node.innerHTML + '</span>';
+                }
+            };
+        }
+    },
+
+    Enable: function(selector) {
+
+        if( supports3DTransforms ) {
+            
+            var nodes = document.querySelectorAll( selector );
+
+            for ( var i = 0, len = nodes.length; i < len; i++ ) {
+                var node = nodes[i];
+
+                if ( !node.className || !node.className.match( /roll/g ) ) {
+                    node.className += ' roll';
+                }
+            }
+        }
+    }
+}
+},{}],6:[function(require,module,exports){
 window.Application = window.Application || {};
 
 window.Application.ShowNavigation = function() {
@@ -459,10 +501,11 @@ window.Application.ShowNavigation = function() {
 window.Application.HideNavigation = function() {
 	$('nav.main .column').slideUp();
 }
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var IndexView        = require('./view/Index'),
     TechView         = require('./view/Tech'),
     ContactView      = require('./view/Contact'),
+    WorkView         = require('./view/Work'),
     BenefactorsView  = require('./view/Benefactors');
 
 module.exports = Backbone.Router.extend({
@@ -473,7 +516,8 @@ module.exports = Backbone.Router.extend({
       "":        "index",
       "tech":    "tech",
       "contact": "contact",
-      "benefactors": "benefactors"
+      "benefactors": "benefactors",
+      "work":      "work"
     },
 
     changeView: function(view, scroll) {
@@ -484,6 +528,9 @@ module.exports = Backbone.Router.extend({
 
         this.currentView = view;
         this.currentView.render();
+
+        // Add nice links, if available
+         Linkify.Linkify('.content a');
 
         if (scroll) {
             $.scrollTo($("#app"),800, {offset: {top: -40}});
@@ -513,8 +560,12 @@ module.exports = Backbone.Router.extend({
     benefactors: function() {
         this.changeView(new BenefactorsView({ el:$('#app') }), true);
     },
+    
+    work: function() {
+        this.changeView(new WorkView({ el:$('#app') }), true);
+    },
 });
-},{"./view/Benefactors":8,"./view/Contact":9,"./view/Index":10,"./view/Tech":11}],7:[function(require,module,exports){
+},{"./view/Benefactors":9,"./view/Contact":10,"./view/Index":11,"./view/Tech":12,"./view/Work":13}],8:[function(require,module,exports){
 // Plugins and extensions
 require("./Helper/Handlebars");
 require("./Navigation");
@@ -524,6 +575,7 @@ window.Router 	 = require('./Router');
 window.Header    = require('./Header');
 window.Colours   = require("./Helper/Colours");
 window.Charts    = require("./Helper/Charts");
+window.Linkify   = require("./Helper/Links");
 
 // Startup routines
 $(document).on("ready",function(){
@@ -533,7 +585,7 @@ $(document).on("ready",function(){
 	$(document).foundation();
 });
 
-},{"./Header":1,"./Helper/Charts":2,"./Helper/Colours":3,"./Helper/Handlebars":4,"./Navigation":5,"./Router":6}],8:[function(require,module,exports){
+},{"./Header":1,"./Helper/Charts":2,"./Helper/Colours":3,"./Helper/Handlebars":4,"./Helper/Links":5,"./Navigation":6,"./Router":7}],9:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -572,7 +624,7 @@ module.exports = Backbone.View.extend({
         return this;
     }
 });
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -647,7 +699,7 @@ module.exports = Backbone.View.extend({
     	return false;
     }
 });
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -660,6 +712,8 @@ module.exports = Backbone.View.extend({
 
         this.renderHexagons();
         this.renderCharts();        
+
+        Linkify.Enable('.call-to-action a');
 
         return this;
     },
@@ -772,7 +826,7 @@ module.exports = Backbone.View.extend({
         );
     }
 });
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     events: {
@@ -989,14 +1043,14 @@ module.exports = Backbone.View.extend({
 
         Charts.renderStackedBarChart( $("#committed-bar"), 
                                 {
-                                    labels : ["January", "Feburary", "March", "April", "May", "June"],
+                                    labels : ["Feburary", "March", "April", "May", "June", "July"],
                                     datasets : [
                                         {
                                             fillColor: "rgba(97,53,115,0.85)",
                                             strokeColor: "rgba(97,53,115,1)",
                                             pointColor : "rgba(97,53,115,1)",
                                             pointStrokeColor : "#fff",
-                                            data : [4610,5812,7222,2893,3412,1948],
+                                            data : [5812,7222,2893,3412,1948,4610],
                                             title : "Backend"
                                         },
                                         {
@@ -1004,7 +1058,7 @@ module.exports = Backbone.View.extend({
                                             strokeColor: "rgba(42,152,143,1)",
                                             pointColor : "rgba(42,152,143,1)",
                                             pointStrokeColor : "#fff",
-                                            data : [3512,1672,2428,3680,4219,5708],
+                                            data : [1672,2428,3680,4219,5708,3512],
                                             title : "Frontend"
                                         },
                                         {
@@ -1012,7 +1066,7 @@ module.exports = Backbone.View.extend({
                                             strokeColor: "rgba(61,65,136,1)",
                                             pointColor : "rgba(61,65,136,1)",
                                             pointStrokeColor : "#fff",
-                                            data : [3032,2601,3896,2081,1082,1552],
+                                            data : [2601,3896,2081,1082,1552,3032],
                                             title : "Markup        "
                                         },
                                     ]
@@ -1129,5 +1183,19 @@ module.exports = Backbone.View.extend({
         );
     }
 });
-},{}]},{},[7])
+},{}],13:[function(require,module,exports){
+module.exports = Backbone.View.extend({
+
+    events: {
+    },
+
+    // generate the view
+    render: function() {
+
+        this.$el.html(Templates["work"]({}));
+
+        return this;
+    }
+});
+},{}]},{},[8])
 ;

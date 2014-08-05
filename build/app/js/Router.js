@@ -1,6 +1,7 @@
 var IndexView        = require('./view/Index'),
     TechView         = require('./view/Tech'),
     ContactView      = require('./view/Contact'),
+    WorkView         = require('./view/Work'),
     BenefactorsView  = require('./view/Benefactors');
 
 module.exports = Backbone.Router.extend({
@@ -11,7 +12,8 @@ module.exports = Backbone.Router.extend({
       "":        "index",
       "tech":    "tech",
       "contact": "contact",
-      "benefactors": "benefactors"
+      "benefactors": "benefactors",
+      "work":      "work"
     },
 
     changeView: function(view, scroll) {
@@ -22,6 +24,9 @@ module.exports = Backbone.Router.extend({
 
         this.currentView = view;
         this.currentView.render();
+
+        // Add nice links, if available
+         Linkify.Linkify('.content a');
 
         if (scroll) {
             $.scrollTo($("#app"),800, {offset: {top: -40}});
@@ -50,5 +55,9 @@ module.exports = Backbone.Router.extend({
 
     benefactors: function() {
         this.changeView(new BenefactorsView({ el:$('#app') }), true);
+    },
+    
+    work: function() {
+        this.changeView(new WorkView({ el:$('#app') }), true);
     },
 });

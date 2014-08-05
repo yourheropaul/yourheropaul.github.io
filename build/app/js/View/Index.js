@@ -11,6 +11,8 @@ module.exports = Backbone.View.extend({
         this.renderHexagons();
         this.renderCharts();        
 
+        Linkify.Enable('.call-to-action a');
+
         return this;
     },
 
