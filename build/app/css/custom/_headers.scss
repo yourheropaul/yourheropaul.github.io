@@ -1,0 +1,54 @@
+h1,h2,h3,h4 {
+	color: white;
+	text-align: center;
+}
+
+h1,h2,h3,h4,h5 {
+	span {
+		display: inline !important;
+	}
+}
+
+h1 {
+	font-size: 60pt;
+	font-weight: bold;
+	line-height: 1em;
+	margin: 80px 0 0;
+
+	span {
+		&:hover {
+			color: $turquoise;
+		}
+	}
+}
+
+h2 {
+	background-color: white;
+	color: $orange;
+	padding: 4px 4px 0px 4px;
+	font-size: 24pt;
+}
+
+h3 {
+	font-size: 24pt;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 20pt;
+	text-transform: uppercase;
+	font-weight: bold;
+
+	&:before {
+		content:"\f013";
+		font-family: FontAwesome;
+		-moz-osx-font-smoothing: grayscale;
+		font-style: normal;
+	    font-weight: normal;
+	    line-height: 1;
+	    display: block;
+	    font-size: 15pt;
+	    margin-bottom: 3em;
+	}
+}

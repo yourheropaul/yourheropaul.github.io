@@ -1,0 +1,57 @@
+<div class="row">
+	<h3>Work: UNICEF 2014 Appeal</h3>
+</div>
+
+<div class="row call-to-action pull" id="charts">
+	<a href="#work"><span data-title="back to case studies"><i class="fa fa-long-arrow-left"></i> Back to case studies</span></a>
+</div>
+
+<div class="row">
+	<div class="small-12 columns content">
+		<p class="standout">A multi-lingual, multi-currency donations platform designed for scalability and performance.</p>
+	</div>
+
+	<div class="columns small-12 medium-4 small-centered"><a href="http://unicef2014appeal.org" target="_blank" class="button expand quaternary-background-colour">Visit http://unicef2014appeal.org</a></div>
+</div>
+
+<div class="row case-studies">
+	<h4>The problem</h4>
+
+	<div class="small-12 medium-12 columns content">
+		<p>UNICEF need a highly-performant, credit card and PayPal donations platform which will be initially promoted during the Commonwealth Games – to an audience of millions. It has to be location-aware, support a two dozen currencies, thirteen languages and tens of thousands of concurrent requests.</p>
+		<p>Oh, and you only have five weeks to build and test the whole thing.</p>
+	</div>
+	<div class="small-12 medium-6 medium-centered columns content">
+		<img src="/assets/images/case-studies/unicef/ss1.png" />
+	</div>
+</div>
+
+<div class="row case-studies">
+	<h4>The technical solution</h4>
+
+	<div class="small-12 medium-12 columns content">
+		<p>Incoming requests were routed through Nginx using a GeoIP lookup on a load-balanced server cluster, and guesses were made about the expected currency and language settings.</p>
+		<p>The server-side application was a custom Go build, incorporating a complex, highly cached REST API which delivered vernacular page content asynchconously, and accepted and fulfilled payment requests. Presentational assets were stored in MongoDB's GridFS and served by Amazon CloudFront.</p>
+		<p>Translations were compiled by a distributed by an international team, and fed into a Google Documents using a simple replacement token synax. This was periodically polled and used to compile a translations matrix, which was inducted into the serverside application for delivery over the REST API.</p>
+		<p>Most of the heavy lifting was performed by the one-page, Backbone-driven client application, which used sophisticated JavaScript (and a bit of Nginx header magic) to determine the correct localisation settings and deploy the correct content. Since every page, the payment forms and all the additional content had to ber vernacular, performance was key, and every line of JavaScript was thoroughly tested and benchmarked.</p>
+	</div>
+	<div class="small-12 medium-6 medium-centered columns content">
+		<img src="/assets/images/case-studies/unicef/ss2.png" />
+	</div>
+</div>
+
+<div class="row case-studies">
+	<h4>The results</h4>
+
+	<div class="small-12 medium-12 columns content">
+		<p>The demand on the servers far exceeded what was expected. Fortunately, the application was able to bear the load gracefully, and, despite some early hiccups with the payment provider's stability, the campaign was a success. At the time of writing, the campaign has raised more than £2 million, and it continues.</p>
+	</div>
+	<div class="small-12 medium-6 medium-centered columns content">
+		<img src="/assets/images/case-studies/unicef/ss3.png" />
+	</div>
+</div>
+
+<div class="row call-to-action pull">
+	<a href="#work"><span data-title="back to case studies"><i class="fa fa-long-arrow-left"></i> Back to case studies</span></a>
+</div>
+

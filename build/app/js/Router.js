@@ -9,11 +9,12 @@ module.exports = Backbone.Router.extend({
     first_view: true,
 
     routes: {
-      "":        "index",
-      "tech":    "tech",
-      "contact": "contact",
+      "":            "index",
+      "tech":        "tech",
+      "contact":     "contact",
       "benefactors": "benefactors",
-      "work":      "work"
+      "work":        "work",
+      "work/:case":  "caseStudy"
     },
 
     changeView: function(view, scroll) {
@@ -59,5 +60,9 @@ module.exports = Backbone.Router.extend({
     
     work: function() {
         this.changeView(new WorkView({ el:$('#app') }), true);
+    },
+
+    caseStudy: function(name) {
+        this.changeView(new WorkView({ el:$('#app'), name: name }), true);
     },
 });

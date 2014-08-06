@@ -1,0 +1,82 @@
+#sticky-nav-container,
+#perenial-nav-container {
+
+	background-color: white;
+
+	nav {
+		display: none;
+		background-color: white;
+	}
+
+	background-color: white;
+
+	nav {
+		display: none;
+		background-color: white;
+	}
+
+	.top-bar-section ul li > a,
+	.top-bar .name h1 a {
+		background-color: white;
+		color: $orange;
+		text-transform: uppercase;
+		span {
+			color: black;
+		}
+	}
+
+	.topbar.menu-icon a {
+		color: black;
+	}
+
+	&.fixed {
+		h2 {
+			display: none;
+		}
+
+		nav {
+			display: block;
+		}
+	}
+
+	.menu-icon a span {
+		color: $orange;
+	}
+
+	.title-area {
+		background-color: white;
+	}
+
+	h1 {
+		text-align: left;
+	}
+}
+
+#perenial-nav-container {
+
+	@include opacity(0.9);
+
+	@media #{$medium} {
+		@include opacity(0.5);
+	}
+
+	height: 45px;
+
+	background-color: transparent;
+
+	nav {
+		background-color: transparent;
+	}
+
+	&.visible {
+		background-color: white;
+	}
+
+	ul li > a {
+		padding: 10px 0 10px 15px;
+
+		@media #{$medium} {
+			padding: 0 15px;
+		}
+	}
+}
