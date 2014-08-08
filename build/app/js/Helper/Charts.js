@@ -175,7 +175,13 @@ module.exports = {
         resize();
     },
 
-    renderStackedBarChart: function(el, data) {
+    renderStackedBarChart: function(el, data, scale_steps, scale_step_width) {
+
+        if (typeof scale_steps == "undefined")
+            scale_steps = 14;
+
+        if (typeof scale_step_width == "undefined")
+            scale_step_width = 1000;
 
         /// Get context with jQuery - using jQuery's .get() method.
         var ctx = el.get(0).getContext("2d");
@@ -204,8 +210,8 @@ module.exports = {
             scaleFontSize : 14,
             scaleStartValue : 0,
             scaleOverride : true,
-            scaleSteps : 14,
-            scaleStepWidth: 1000,
+            scaleSteps : scale_steps,
+            scaleStepWidth: scale_step_width,
             scaleFontColor: "white",
             legend : true,
             legendFontFamily : "'Helvetica'",
