@@ -36,3 +36,18 @@
 		}
 	}
 }
+
+.tag-cloud {
+	margin-bottom: 1em;
+	margin-top: 2em;
+	line-height: 1.1em;
+	text-align: center;
+
+	span {
+		color: white;
+		font-size: 0.8em;
+		padding: 0.5em;
+		padding-top: 0.6em;
+		margin-bottom: 0.5em;
+	}
+}

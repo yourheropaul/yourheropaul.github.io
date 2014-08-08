@@ -31,8 +31,7 @@ module.exports = Backbone.View.extend({
 			"quaternary",
 			"quinary",
 			"senary",
-			"septenary",
-			"octonary"
+			"septenary"
         ];
 
         $(".random-colour", this.$el).each(function(){
