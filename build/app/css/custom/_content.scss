@@ -1,6 +1,7 @@
 .content {
 	color: white;
 	margin-top: 2em;
+	-webkit-font-smoothing:antialiased;
 
 	p {		
 	    line-height: 1.3em;
@@ -24,7 +25,8 @@
 		    font-size: 1.2em;
 		    line-height: 1.5em;
 		    margin-top: 2em;
-		    padding: 1.5em;
+		    padding: 1em;
+		    padding-left: 25px;
 		    background-color: rgba($yellow, 0.5);;
 
 		    &.push {
